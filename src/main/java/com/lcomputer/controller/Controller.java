@@ -47,7 +47,7 @@ public class Controller extends HttpServlet {
 	}
 	
 
-
+//오오
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
