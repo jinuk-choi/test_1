@@ -55,7 +55,7 @@
 <body>
 	<div>
 		<ul>
-			<li><a href="user-list.do?page=1">1</a></li>
+			<li><a href="user-list.do?page=1">1</a></li> 
 			<li><a href="user-list.do?page=2">2</a></li>
 			<li><a href="user-list.do?page=3">3</a></li>
 			<li><a href="user-list.do?page=4">4</a></li>
