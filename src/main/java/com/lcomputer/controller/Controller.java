@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.lcomputer.service.BoardService;
 import com.lcomputer.service.UserService;
-import com.lcomputer.vo.Board;
 import com.lcomputer.vo.Pagination;
 import com.lcomputer.vo.User;
 
@@ -36,7 +34,6 @@ public class Controller extends HttpServlet {
 				,"/user-edit.do"
 				,"/user-edit-process.do"
 				,"/logout.do"
-				
 			};
 		
 		for (String item : authList) {
@@ -50,7 +47,7 @@ public class Controller extends HttpServlet {
 	}
 	
 
-
+//오오
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,16 +64,8 @@ public class Controller extends HttpServlet {
 		
 		int page = 1;
 		int pageNum = 0;
-		String reqPage = null;
 		String pw = null;
 		String idx = null;
-		int count = 0;
-		BoardService boardService = null;
-		Pagination pagination = null;
-		ArrayList<User> list = null;
-		ArrayList<Board> boardList = null;
-		
-		
 		
 		command = checkSession(request, response, command);
 		
@@ -86,17 +75,17 @@ public class Controller extends HttpServlet {
 			
 		switch (command) {
 			case "/user-list.do":
-				reqPage = request.getParameter("page");
+				String reqPage = request.getParameter("page");
 				if (reqPage != null) { 
 					page = Integer.parseInt(reqPage);
 				}
 				UserService userService = UserService.getInstance();
-				list = userService.getUsers(page);
-				count = userService.getUsersCount();
-				
-				pagination = new Pagination(page, count);
+				ArrayList<User> list = userService.getUsers(page);
+				Pagination pagination = new Pagination(page);
+				usercount = userService.getUsersCount();
 												
 				request.setAttribute("list", list);
+				request.setAttribute("usercount", usercount);
 				request.setAttribute("pagination", pagination);
 				
 				view = "user/list";
@@ -156,24 +145,6 @@ public class Controller extends HttpServlet {
 			
 			case "/access-denied.do":
 				view = "user/access-denied";
-				break;
-				
-			case "/board-list.do":
-				reqPage = request.getParameter("page");
-				if (reqPage != null) { 
-					page = Integer.parseInt(reqPage);
-				}
-				boardService = BoardService.getInstance();
-				boardList = boardService.getBoard(page);
-				
-				count = boardService.getCount();	
-				pagination = new Pagination(page, count);
-												
-			
-				request.setAttribute("pagination", pagination);							
-				request.setAttribute("list", boardList);
-				
-				view = "board/list";
 				break;
 	
 		}

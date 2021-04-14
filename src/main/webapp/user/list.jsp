@@ -53,11 +53,19 @@
 	}
 </style>
 <body>
-	
+	<div>
+		<ul>
+			<li><a href="user-list.do?page=1">1</a></li> 
+			<li><a href="user-list.do?page=2">2</a></li>
+			<li><a href="user-list.do?page=3">3</a></li>
+			<li><a href="user-list.do?page=4">4</a></li>
+			<li><a href="user-list.do?page=5">5</a></li>
+		</ul>
+	</div>
 <h1>회원 목록</h1>
 	<table >
 		<tr>
-			<td colspan="3">전체 회원 수 : ${pagination.count}</td>
+			<td colspan="3">전체 회원 수 : ${pagination.userCount}</td>
 		<tr>
 			<th>No</th>
 			<th>ID</th>
