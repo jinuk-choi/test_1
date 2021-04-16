@@ -31,6 +31,19 @@ public class BoardService {
 		return dao.getCount();
 	}
 	
+	public void insertBoard(Board board) {
+		dao.insertBoard(board);
+	}
+	
+	public Board getBoardById(int aIdx) {
+		return dao.getBoardById(aIdx);
+	}
+	
+	public void editBoard(Board board) {
+		dao.editBoard(board);
+	}
+
+	
 	
 	
 	

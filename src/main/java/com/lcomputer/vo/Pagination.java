@@ -23,7 +23,7 @@ public class Pagination {
 		lastPage = (int)Math.ceil(count / (float)perPage);
 		endPage = startPage+pageUnit-1;
 		endPage = endPage < lastPage ? endPage : lastPage;
-		prevPage=(endPage-1);
+		prevPage=(startPage-1);
 		nextPage=(startPage+pageUnit);
 		
 	}

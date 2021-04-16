@@ -7,6 +7,7 @@ public class Board {
 	private String a_title;
 	private int a_count;
 	private String a_content;
+	private int rownum;
 	
 	
 	
@@ -40,7 +41,12 @@ public class Board {
 	public void setA_content(String a_content) {
 		this.a_content = a_content;
 	}
-	
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	
 
 }

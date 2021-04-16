@@ -30,14 +30,14 @@ public class Controller extends HttpServlet {
 		
 		String[] authList = {
 				"/user-list.do"
-				,"/user-insert.do"
+				/*,"/user-insert.do"
 				,"/user-insert-process.do"
 				,"/user-detail.do"
 				,"/user-edit.do"
 				,"/user-edit-process.do"
-				,"/logout.do"
+				,"/logout.do"  */
 				
-			};
+			};  
 		
 		for (String item : authList) {
 			if (item.equals(command)) {
@@ -46,8 +46,8 @@ public class Controller extends HttpServlet {
 				}
 			}
 		}
-		return command;
-	}
+		return command;   
+	} 
 	
 
 
@@ -75,6 +75,8 @@ public class Controller extends HttpServlet {
 		Pagination pagination = null;
 		ArrayList<User> list = null;
 		ArrayList<Board> boardList = null;
+		int aIdx = 0;
+		Board board = null;
 		
 		
 		
@@ -162,19 +164,73 @@ public class Controller extends HttpServlet {
 				reqPage = request.getParameter("page");
 				if (reqPage != null) { 
 					page = Integer.parseInt(reqPage);
+					
 				}
 				boardService = BoardService.getInstance();
 				boardList = boardService.getBoard(page);
-				
 				count = boardService.getCount();	
 				pagination = new Pagination(page, count);
 												
 			
-				request.setAttribute("pagination", pagination);							
 				request.setAttribute("list", boardList);
+				request.setAttribute("pagination", pagination);							
+				
 				
 				view = "board/list";
 				break;
+				
+				
+			case "/board-insert.do":
+				view = "board/insert";
+				break;
+				
+			case "/board-insert-process.do":
+				board = new Board();
+				board.setA_writer(request.getParameter("id"));
+				board.setA_title(request.getParameter("title"));
+				board.setA_content(request.getParameter("content"));
+				
+				boardService = BoardService.getInstance();
+				boardService.insertBoard(board);
+						
+				view = "board/insert-result";
+				break;
+				
+			case "/board-detail.do":
+				aIdx = Integer.parseInt(request.getParameter("a_idx"));
+				boardService = BoardService.getInstance();
+				board = boardService.getBoardById(aIdx);
+				
+				request.setAttribute("board", board);
+				view = "board/detail";
+				break;
+			
+			case "/board-edit.do":
+				aIdx = Integer.parseInt(request.getParameter("a_idx"));
+				boardService = BoardService.getInstance();
+				board = boardService.getBoardById(aIdx);
+				
+				request.setAttribute("board", board);
+				
+				view = "board/edit";
+				break;
+				
+			case "/board-edit-process.do":
+				
+				
+				board = new Board();
+				board.setA_writer(request.getParameter("id"));
+				board.setA_title(request.getParameter("title"));
+				board.setA_content(request.getParameter("content"));
+				
+				boardService = BoardService.getInstance();
+				boardService.editBoard(board);
+						
+				view = "board/insert-result";
+				break;
+		
+				
+				
 	
 		}
 		
