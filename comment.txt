@@ -1,0 +1,171 @@
+LastSessions<|||>1<|||>Unnamed
+LastActiveSession<|||>1<|||>Unnamed
+ColWidths_connform.ListSessions<|||>1<|||>163,50,50,50,50,50,10
+ColsVisible_connform.ListSessions<|||>1<|||>0,1,4,6
+ColPositions_connform.ListSessions<|||>1<|||>0,1,2,3,4,5,6
+ColSort_connform.ListSessions<|||>1<|||>0,0
+MainWinOnMonitor<|||>3<|||>0
+MainWinLeft<|||>3<|||>379
+MainWinTop<|||>3<|||>153
+ColWidths_MainForm.ListDatabases<|||>1<|||>150,80,50,50,50,50,50,50,50,50,120
+ColsVisible_MainForm.ListDatabases<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10
+ColPositions_MainForm.ListDatabases<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10
+ColSort_MainForm.ListDatabases<|||>1<|||>0,0
+ColWidths_MainForm.ListVariables<|||>1<|||>160,200,428
+ColsVisible_MainForm.ListVariables<|||>1<|||>0,1,2
+ColPositions_MainForm.ListVariables<|||>1<|||>0,1,2
+ColSort_MainForm.ListVariables<|||>1<|||>0,0
+ColWidths_MainForm.ListStatus<|||>1<|||>160,428,100,100
+ColsVisible_MainForm.ListStatus<|||>1<|||>0,1,2,3
+ColPositions_MainForm.ListStatus<|||>1<|||>0,1,2,3
+ColSort_MainForm.ListStatus<|||>1<|||>0,0
+ColWidths_MainForm.ListProcesses<|||>1<|||>70,80,80,80,80,50,50,154
+ColsVisible_MainForm.ListProcesses<|||>1<|||>0,1,2,3,4,5,6,7
+ColPositions_MainForm.ListProcesses<|||>1<|||>0,1,2,3,4,5,6,7
+ColSort_MainForm.ListProcesses<|||>1<|||>0,1
+ColWidths_MainForm.ListCommandStats<|||>1<|||>120,100,100,100,368
+ColsVisible_MainForm.ListCommandStats<|||>1<|||>0,1,2,3,4
+ColPositions_MainForm.ListCommandStats<|||>1<|||>0,1,2,3,4
+ColSort_MainForm.ListCommandStats<|||>1<|||>1,1
+ColWidths_MainForm.ListTables<|||>1<|||>120,70,70,120,120,70,100,50,70,70,70,70,70,90,120,70,70,70,50
+ColsVisible_MainForm.ListTables<|||>1<|||>0,1,2,3,4,5,6,18
+ColPositions_MainForm.ListTables<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18
+ColSort_MainForm.ListTables<|||>1<|||>0,0
+CreateDbCollation<|||>1<|||>utf8_general_ci
+ColWidths_frmTableEditor.listColumns<|||>1<|||>39,100,154,90,104,119,97,152,130,140,100,100
+ColsVisible_frmTableEditor.listColumns<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11
+ColPositions_frmTableEditor.listColumns<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11
+ColSort_frmTableEditor.listColumns<|||>1<|||>-1,0
+ColWidths_frmTableEditor.treeIndexes<|||>1<|||>1371,100,80
+ColsVisible_frmTableEditor.treeIndexes<|||>1<|||>0,1,2
+ColPositions_frmTableEditor.treeIndexes<|||>1<|||>0,1,2
+ColSort_frmTableEditor.treeIndexes<|||>1<|||>-1,0
+ColWidths_frmTableEditor.listForeignKeys<|||>1<|||>217,80,100,80,80,80
+ColsVisible_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
+ColPositions_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
+ColSort_frmTableEditor.listForeignKeys<|||>1<|||>-1,0
+querymemoheight<|||>3<|||>203
+MainWinMaximized<|||>3<|||>1
+SessionManager_WindowLeft<|||>3<|||>1924
+SessionManager_WindowTop<|||>3<|||>263
+ExportSQL_Filenames<|||>1<|||>C:\Users\l3-morning\Documents\work\lcomputerstudy\db.sql<{{{><}}}>aa<{{{><}}}>
+MemoEditorWidth<|||>3<|||>136
+DateTimeEditor_CursorPos_Type4<|||>3<|||>10
+ExportSQL_CreateDatabases<|||>3<|||>1
+ExportSQL_CreateTables<|||>3<|||>1
+ExportSQL_DataHow<|||>3<|||>2
+SQLFile0<|||>1<|||>C:\Users\l3-morning\AppData\Roaming\HeidiSQL\Backups\query-tab-2021-04-16_09-35-10-597.sql
+SQLFile1<|||>1<|||>C:\Users\l3-morning\AppData\Roaming\HeidiSQL\Backups\query-tab-2021-04-14_09-43-43-065.sql
+SQLFile2<|||>1<|||>C:\Users\l3-morning\AppData\Roaming\HeidiSQL\Backups\query-tab-2021-04-14_09-39-11-993.sql
+SQLFile3<|||>1<|||>C:\Users\l3-morning\AppData\Roaming\HeidiSQL\Backups\query-tab-2021-04-13_11-26-34-373.sql
+SQLFile4<|||>1<|||>C:\Users\l3-morning\AppData\Roaming\HeidiSQL\Backups\query-tab-2021-04-08_11-28-08-726.sql
+Servers\Unnamed\SessionCreated<|||>1<|||>2021-02-24 10:44:20
+Servers\Unnamed\Host<|||>1<|||>127.0.0.1
+Servers\Unnamed\WindowsAuth<|||>3<|||>0
+Servers\Unnamed\CleartextPluginEnabled<|||>3<|||>0
+Servers\Unnamed\User<|||>1<|||>root
+Servers\Unnamed\Password<|||>1<|||>9
+Servers\Unnamed\LoginPrompt<|||>3<|||>0
+Servers\Unnamed\Port<|||>1<|||>3306
+Servers\Unnamed\NetType<|||>3<|||>0
+Servers\Unnamed\Compressed<|||>3<|||>0
+Servers\Unnamed\LocalTimeZone<|||>3<|||>0
+Servers\Unnamed\QueryTimeout<|||>3<|||>30
+Servers\Unnamed\KeepAlive<|||>3<|||>20
+Servers\Unnamed\FullTableStatus<|||>3<|||>1
+Servers\Unnamed\Databases<|||>1<|||>
+Servers\Unnamed\Library<|||>1<|||>libmariadb.dll
+Servers\Unnamed\Comment<|||>1<|||>
+Servers\Unnamed\StartupScriptFilename<|||>1<|||>
+Servers\Unnamed\TreeBackground<|||>3<|||>536870911
+Servers\Unnamed\SSHtunnelHost<|||>1<|||>
+Servers\Unnamed\SSHtunnelHostPort<|||>3<|||>22
+Servers\Unnamed\SSHtunnelUser<|||>1<|||>
+Servers\Unnamed\SSHtunnelPassword<|||>1<|||>9
+Servers\Unnamed\SSHtunnelTimeout<|||>3<|||>4
+Servers\Unnamed\SSHtunnelPrivateKey<|||>1<|||>
+Servers\Unnamed\SSHtunnelPort<|||>3<|||>3307
+Servers\Unnamed\SSL_Active<|||>3<|||>0
+Servers\Unnamed\SSL_Key<|||>1<|||>
+Servers\Unnamed\SSL_Cert<|||>1<|||>
+Servers\Unnamed\SSL_CA<|||>1<|||>
+Servers\Unnamed\SSL_Cipher<|||>1<|||>
+Servers\Unnamed\ServerVersionFull<|||>1<|||>10.5.4-MariaDB - mariadb.org binary distribution
+Servers\Unnamed\ConnectCount<|||>3<|||>17
+Servers\Unnamed\ServerVersion<|||>3<|||>100504
+Servers\Unnamed\LastConnect<|||>1<|||>2021-04-19 09:38:59
+Servers\Unnamed\lastUsedDB<|||>1<|||>aa
+Servers\Unnamed\QueryHistory\1<|||>1<|||>2021-04-08 11:34:29|aa|16|CREATE TABLE `user` (<{{{><}}}>		`u_no` INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,<{{{><}}}>		`u_id` VARCHAR(255) NOT NULL,<{{{><}}}>		`u_pw` VARCHAR(255) NOT NULL,<{{{><}}}>		`u_name` VARCHAR(255) NOT NULL,<{{{><}}}>		`u_tel` VARCHAR(255) NOT NULL<{{{><}}}>) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+Servers\Unnamed\QueryHistory\2<|||>1<|||>2021-04-08 11:35:56|aa|31|CREATE TABLE `userr` (<{{{><}}}>		`u_no` INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,<{{{><}}}>		`u_id` VARCHAR(255) NOT NULL,<{{{><}}}>		`u_pw` VARCHAR(255) NOT NULL,<{{{><}}}>		`u_name` VARCHAR(255) NOT NULL,<{{{><}}}>		`u_tel` VARCHAR(255) NOT NULL<{{{><}}}>) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+Servers\Unnamed\QueryHistory\3<|||>1<|||>2021-04-08 11:41:23|aa|47|ALTER TABLE user<{{{><}}}>CHANGE COLUMN u_no u_idx INT(10) NOT NULL AUTO_INCREMENT FIRST,<{{{><}}}>DROP PRIMARY KEY,<{{{><}}}>ADD PRIMARY KEY (`u_idx`) USING BTREE;
+Servers\Unnamed\QueryHistory\4<|||>1<|||>2021-04-08 11:45:48|aa|15|CREATE TABLE `board` (<{{{><}}}>		`b_idx` INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,<{{{><}}}>		`b_title` VARCHAR(255) NOT NULL,<{{{><}}}>		`b_content` VARCHAR(255) NOT NULL,<{{{><}}}>		`b_data` VARCHAR(255) NOT NULL,<{{{><}}}>		`b_writer` VARCHAR(255) NOT NULL,<{{{><}}}>		`u_idx` INT(10) NOT NULL,<{{{><}}}>		FOREIGN KEY (u_idx) REFERENCES user(u_idx) ON DELETE NO ACTION<{{{><}}}>) ENGINE=INNODB DEFAULT CHARSET=UTF8;
+Servers\Unnamed\QueryHistory\5<|||>1<|||>2021-04-08 11:49:53|aa|0|INSERT INTO user (u_id, u_pw, u_name, u_tel)<{{{><}}}>VALUE ('abc', '1234', 'NAME1', '010-0000-0000')
+Servers\Unnamed\QueryHistory\6<|||>1<|||>2021-04-08 11:54:32|aa|0|UPDATE user SET u_id= 'DEF' WHERE u_id='abc'
+Servers\Unnamed\QueryHistory\7<|||>1<|||>2021-04-08 11:55:07|aa|0|DELETE FROM user WHERE u_id='DEF'
+Servers\Unnamed\QueryHistory\8<|||>1<|||>2021-04-08 12:04:22|aa|16|INSERT INTO user (u_id, u_pw, u_name, u_tel)<{{{><}}}>VALUE ('abc', '1234', 'NAME', '010-0000-0000')
+Servers\Unnamed\QueryHistory\9<|||>1<|||>2021-04-08 12:06:45|aa|15|ALTER TABLE user ADD u_age INT;<{{{><}}}>
+Servers\Unnamed\QueryHistory\10<|||>1<|||>2021-04-08 12:11:29|aa|16|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('a', '111', '김떙땡', '010-1111-1111', '20')
+Servers\Unnamed\QueryHistory\11<|||>1<|||>2021-04-08 12:14:21|aa|0|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('b', '222', '이모씨', '010-2222-2222', '37')<{{{><}}}>
+Servers\Unnamed\QueryHistory\12<|||>1<|||>2021-04-08 12:14:25|aa|0|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('ccc', '34343', '강하다', '010-2121-3232', '58')<{{{><}}}>
+Servers\Unnamed\QueryHistory\13<|||>1<|||>2021-04-08 12:15:20|aa|0|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('dfdf', '545', '홍길동', '010-2898-4767', '44')<{{{><}}}>
+Servers\Unnamed\QueryHistory\14<|||>1<|||>2021-04-08 12:15:49|aa|0|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('zyzy', '252d', '대한민국', '010-4747-3634', '88')<{{{><}}}>
+Servers\Unnamed\QueryHistory\15<|||>1<|||>2021-04-08 12:16:16|aa|16|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('a1234', 'bbbb', '만세', '010-8487-7978', '69')<{{{><}}}>
+Servers\Unnamed\QueryHistory\16<|||>1<|||>2021-04-08 12:17:26|aa|16|DELETE FROM user WHERE u_id='abc'
+Servers\Unnamed\QueryHistory\18<|||>1<|||>2021-04-08 12:22:21|aa|0|SELECT		u_idx<{{{><}}}>FROM			user<{{{><}}}>WHERE			u_id='a' || u_id='b' || u_id='a1234'<{{{><}}}>GROUP BY		u_age<{{{><}}}>HAVING		u_age < 80<{{{><}}}>ORDER BY		u_id asc<{{{><}}}>
+Servers\Unnamed\QueryHistory\17<|||>1<|||>2021-04-08 12:22:38|aa|0|SELECT		u_idx, u_id, u_age<{{{><}}}>FROM			user<{{{><}}}>WHERE			u_id='a' || u_id='b' || u_id='a1234'<{{{><}}}>GROUP BY		u_age<{{{><}}}>HAVING		u_age < 80<{{{><}}}>ORDER BY		u_id asc<{{{><}}}>
+Servers\Unnamed\QueryHistory\20<|||>1<|||>2021-04-08 12:22:42|aa|0|SELECT		*<{{{><}}}>FROM			user<{{{><}}}>WHERE			u_id='a' || u_id='b' || u_id='a1234'<{{{><}}}>GROUP BY		u_age<{{{><}}}>HAVING		u_age < 80<{{{><}}}>ORDER BY		u_id asc<{{{><}}}>
+Servers\Unnamed\QueryHistory\19<|||>1<|||>2021-04-08 12:34:23|aa|0|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('baba', 'cfdfd', '바비', '010-8787-1111', '56')<{{{><}}}>
+Servers\Unnamed\QueryHistory\21<|||>1<|||>2021-04-08 12:34:52|aa|0|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('wew', 'qqqq', '박찬호', '010-7777-3232', '23')<{{{><}}}>
+Servers\Unnamed\QueryHistory\22<|||>1<|||>2021-04-08 12:35:19|aa|16|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('a1', '5555', '강호동', '090-4343-4444', '32')<{{{><}}}>
+Servers\Unnamed\QueryHistory\23<|||>1<|||>2021-04-08 12:35:44|aa|0|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('b1', '1111', '박길동', '090-3333-7777', '49')<{{{><}}}>
+Servers\Unnamed\QueryHistory\24<|||>1<|||>2021-04-08 12:36:09|aa|0|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('bb1', '2222', '고길동', '090-4444-6666', '61')<{{{><}}}>
+Servers\Unnamed\QueryHistory\25<|||>1<|||>2021-04-08 12:36:34|aa|0|INSERT INTO user (u_id, u_pw, u_name, u_tel, u_age)<{{{><}}}>VALUE ('cc3', 'c1c1', '최길동', '090-1111-3333', '74')<{{{><}}}>
+Servers\Unnamed\QueryHistory\26<|||>1<|||>2021-04-08 12:37:26|aa|0|SELECT		ta.*,<{{{><}}}>				TRUNCATE(u_age, -1) u_gen<{{{><}}}>FROM			user ta<{{{><}}}>
+Servers\Unnamed\QueryHistory\27<|||>1<|||>2021-04-08 12:39:12|aa|15|SELECT		ta.u_gen,<{{{><}}}>				MAX(ta.u_age) max_u_age<{{{><}}}>FROM			<{{{><}}}>				(<{{{><}}}>				SELECT		ta.*,<{{{><}}}>								TRUNCATE(u_age, -1) u_gen<{{{><}}}>				FROM			user ta<{{{><}}}>				) ta<{{{><}}}>GROUP BY		u_gen<{{{><}}}>
+Servers\Unnamed\QueryHistory\28<|||>1<|||>2021-04-08 12:43:55|aa|0|SELECT		ta.*,<{{{><}}}>					tb.u_gen<{{{><}}}>FROM			user ta<{{{><}}}>INNER JOIN<{{{><}}}>				(<{{{><}}}>				SELECT		ta.u_gen,<{{{><}}}>								MAX(ta.u_age) max_u_age<{{{><}}}>				FROM			<{{{><}}}>								(<{{{><}}}>								SELECT		ta.*,<{{{><}}}>												TRUNCATE(u_age, -1) u_gen<{{{><}}}>								FROM			user ta<{{{><}}}>								) ta<{{{><}}}>				GROUP BY		u_gen<{{{><}}}>				) tb ON ta.u_age = tb.max_u_age<{{{><}}}>ORDER BY u_gen asc<{{{><}}}>
+Servers\Unnamed\QueryHistory\30<|||>1<|||>2021-04-08 12:46:38|aa|0|SELECT		ta.*,<{{{><}}}>												TRUNCATE(u_age, -1) u_gen<{{{><}}}>								FROM			user ta
+Servers\Unnamed\QueryHistory\31<|||>1<|||>2021-04-08 12:50:19|aa|0|								SELECT		ta.*,<{{{><}}}>												TRUNCATE(u_age, -1) u_gen<{{{><}}}>								FROM			user ta
+Servers\Unnamed\QueryHistory\32<|||>1<|||>2021-04-08 12:50:37|aa|0|				SELECT		ta.u_gen,<{{{><}}}>								MAX(ta.u_age) max_u_age<{{{><}}}>				FROM			<{{{><}}}>								(<{{{><}}}>								SELECT		ta.*,<{{{><}}}>												TRUNCATE(u_age, -1) u_gen<{{{><}}}>								FROM			user ta<{{{><}}}>								) ta<{{{><}}}>				GROUP BY		u_gen
+Servers\Unnamed\QueryHistory\33<|||>1<|||>2021-04-08 12:51:54|aa|0|SELECT		ta.*,<{{{><}}}>				tb.u_gen<{{{><}}}>FROM			user ta<{{{><}}}>LEFT JOIN<{{{><}}}>				(<{{{><}}}>				SELECT		ta.u_gen,<{{{><}}}>								MAX(ta.u_age) max_u_age<{{{><}}}>				FROM			<{{{><}}}>								(<{{{><}}}>								SELECT		ta.*,<{{{><}}}>												TRUNCATE(u_age, -1) u_gen<{{{><}}}>								FROM			user ta<{{{><}}}>								) ta<{{{><}}}>				GROUP BY		u_gen<{{{><}}}>				) tb ON ta.u_age = tb.max_u_age
+Servers\Unnamed\QueryHistory\35<|||>1<|||>2021-04-08 12:53:00|aa|0|SELECT		ta.*,<{{{><}}}>				tb.u_gen<{{{><}}}>FROM			user ta<{{{><}}}>LEFT JOIN<{{{><}}}>				(<{{{><}}}>				SELECT		ta.u_gen,<{{{><}}}>								MAX(ta.u_age) max_u_age<{{{><}}}>				FROM			<{{{><}}}>								(<{{{><}}}>								SELECT		ta.*,<{{{><}}}>												TRUNCATE(u_age, -1) u_gen<{{{><}}}>								FROM			user ta<{{{><}}}>								) ta<{{{><}}}>				GROUP BY		u_gen<{{{><}}}>				) tb ON ta.u_age = tb.max_u_age<{{{><}}}>ORDER BY u_gen asc<{{{><}}}>
+Servers\Unnamed\QueryHistory\29<|||>1<|||>2021-04-08 12:53:06|aa|0|SELECT		ta.*,<{{{><}}}>				tb.u_gen,<{{{><}}}>				tb.max_u_age<{{{><}}}>FROM			user ta<{{{><}}}>LEFT JOIN<{{{><}}}>				(<{{{><}}}>				SELECT		ta.u_gen,<{{{><}}}>								MAX(ta.u_age) max_u_age<{{{><}}}>				FROM			<{{{><}}}>								(<{{{><}}}>								SELECT		ta.*,<{{{><}}}>												TRUNCATE(u_age, -1) u_gen<{{{><}}}>								FROM			user ta<{{{><}}}>								) ta<{{{><}}}>				GROUP BY		u_gen<{{{><}}}>				) tb ON ta.u_age = tb.max_u_age<{{{><}}}>ORDER BY u_gen asc<{{{><}}}>
+Servers\Unnamed\QueryHistory\34<|||>1<|||>2021-04-08 12:53:25|aa|0|SELECT		ta.*,<{{{><}}}>				tb.u_gen,<{{{><}}}>				tb.max_u_age<{{{><}}}>FROM			user ta<{{{><}}}>inner JOIN<{{{><}}}>				(<{{{><}}}>				SELECT		ta.u_gen,<{{{><}}}>								MAX(ta.u_age) max_u_age<{{{><}}}>				FROM			<{{{><}}}>								(<{{{><}}}>								SELECT		ta.*,<{{{><}}}>												TRUNCATE(u_age, -1) u_gen<{{{><}}}>								FROM			user ta<{{{><}}}>								) ta<{{{><}}}>				GROUP BY		u_gen<{{{><}}}>				) tb ON ta.u_age = tb.max_u_age<{{{><}}}>ORDER BY u_gen asc<{{{><}}}>
+Servers\Unnamed\QueryHistory\36<|||>1<|||>2021-04-08 12:53:37|aa|0|SELECT		ta.*,<{{{><}}}>				tb.u_gen,<{{{><}}}>				tb.max_u_age<{{{><}}}>FROM			user ta<{{{><}}}>left JOIN<{{{><}}}>				(<{{{><}}}>				SELECT		ta.u_gen,<{{{><}}}>								MAX(ta.u_age) max_u_age<{{{><}}}>				FROM			<{{{><}}}>								(<{{{><}}}>								SELECT		ta.*,<{{{><}}}>												TRUNCATE(u_age, -1) u_gen<{{{><}}}>								FROM			user ta<{{{><}}}>								) ta<{{{><}}}>				GROUP BY		u_gen<{{{><}}}>				) tb ON ta.u_age = tb.max_u_age<{{{><}}}>ORDER BY u_gen asc<{{{><}}}>
+Servers\Unnamed\QueryHistory\37<|||>1<|||>2021-04-09 12:30:47|aa|0|SELECT * FROM user
+Servers\Unnamed\QueryHistory\39<|||>1<|||>2021-04-09 12:40:03|aa|0|select * from user where u_idx=3
+Servers\Unnamed\QueryHistory\38<|||>1<|||>2021-04-13 09:11:31|aa|0|SELECT 	* <{{{><}}}>FROM 		user<{{{><}}}>
+Servers\Unnamed\QueryHistory\40<|||>1<|||>2021-04-13 09:12:30|aa|0|SELECT 	* <{{{><}}}>FROM 		user<{{{><}}}>LIMIT 	0, 3<{{{><}}}>
+Servers\Unnamed\QueryHistory\41<|||>1<|||>2021-04-13 09:12:44|aa|0|SELECT 	* <{{{><}}}>FROM 		user<{{{><}}}>LIMIT 	3, 3<{{{><}}}>
+Servers\Unnamed\QueryHistory\42<|||>1<|||>2021-04-13 09:12:52|aa|0|SELECT 	* <{{{><}}}>FROM 		user<{{{><}}}>LIMIT 	6, 3<{{{><}}}>
+Servers\Unnamed\QueryHistory\46<|||>1<|||>2021-04-13 09:17:49|aa|0|SELECT		*<{{{><}}}>FROM 			user
+Servers\Unnamed\QueryHistory\48<|||>1<|||>2021-04-13 09:20:11|aa|16|(SELECT @rownum := (SELECT	COUNT(*)-0+1 FROM user ta))
+Servers\Unnamed\QueryHistory\49<|||>1<|||>2021-04-13 09:20:29|aa|0|SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,<{{{><}}}>				ta.*<{{{><}}}>FROM 			user ta,<{{{><}}}>				(SELECT @rownum := (SELECT	COUNT(*)-0+1 FROM user ta)) tb
+Servers\Unnamed\QueryHistory\51<|||>1<|||>2021-04-13 09:21:38|aa|0|SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,<{{{><}}}>				ta.*<{{{><}}}>FROM 			user ta,<{{{><}}}>				(SELECT @rownum := (SELECT	COUNT(*)-6+1 FROM user ta)) tb<{{{><}}}>LIMIT			6, 3
+Servers\Unnamed\QueryHistory\52<|||>1<|||>2021-04-13 09:21:45|aa|0|SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,<{{{><}}}>				ta.*<{{{><}}}>FROM 			user ta,<{{{><}}}>				(SELECT @rownum := (SELECT	COUNT(*)-6+1 FROM user ta)) tb<{{{><}}}>LIMIT			9, 3
+Servers\Unnamed\QueryHistory\53<|||>1<|||>2021-04-13 09:21:48|aa|0|SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,<{{{><}}}>				ta.*<{{{><}}}>FROM 			user ta,<{{{><}}}>				(SELECT @rownum := (SELECT	COUNT(*)-9+1 FROM user ta)) tb<{{{><}}}>LIMIT			9, 3
+Servers\Unnamed\QueryHistory\54<|||>1<|||>2021-04-13 09:21:58|aa|0|SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,<{{{><}}}>				ta.*<{{{><}}}>FROM 			user ta,<{{{><}}}>				(SELECT @rownum := (SELECT	COUNT(*)-12+1 FROM user ta)) tb<{{{><}}}>LIMIT			12, 3
+Servers\Unnamed\QueryHistory\47<|||>1<|||>2021-04-13 11:21:50|cju|16|CREATE TABLE `bord` (<{{{><}}}>	`a_no` INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,<{{{><}}}>	`a_name` VARCHAR(255) NOT NULL,<{{{><}}}>	`a_title` VARCHAR(255) NOT NULL,<{{{><}}}>	`a_count` INT(10) NOT NULL<{{{><}}}>) ENGINE=InnoDB DEFAULT CHARSET=UTF8;<{{{><}}}>	
+Servers\Unnamed\QueryHistory\56<|||>1<|||>2021-04-13 11:46:55|aa|16|CREATE TABLE `board` (<{{{><}}}>	`a_no` INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,<{{{><}}}>	`a_writer` VARCHAR(255) NOT NULL,<{{{><}}}>	`a_title` VARCHAR(255) NOT NULL,<{{{><}}}>	`a_count` INT(10) NOT NULL<{{{><}}}>) ENGINE=InnoDB DEFAULT CHARSET=UTF8;<{{{><}}}>	
+Servers\Unnamed\QueryHistory\57<|||>1<|||>2021-04-13 12:01:18|aa|31|ALTER TABLE board<{{{><}}}>CHANGE COLUMN a_no a_idx INT(10) NOT NULL AUTO_INCREMENT FIRST,<{{{><}}}>DROP PRIMARY KEY,<{{{><}}}>ADD PRIMARY KEY(`a_idx`) USING BTREE;
+Servers\Unnamed\QueryHistory\58<|||>1<|||>2021-04-13 12:03:16|aa|0|INSERT board (a_writer, a_title)<{{{><}}}>VALUE ('aa','abc')<{{{><}}}>
+Servers\Unnamed\QueryHistory\59<|||>1<|||>2021-04-13 12:03:35|aa|0|INSERT board (a_writer, a_title, a_count)<{{{><}}}>VALUE ('aa','abc', '5')<{{{><}}}>
+Servers\Unnamed\QueryHistory\60<|||>1<|||>2021-04-14 09:40:16|aa|0|SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,<{{{><}}}>				ta.*<{{{><}}}>FROM 			user ta,<{{{><}}}>				(SELECT @rownum := (SELECT	COUNT(*)-0+1 FROM user ta)) tb<{{{><}}}>LIMIT			0, 3
+Servers\Unnamed\QueryHistory\61<|||>1<|||>2021-04-14 09:40:48|aa|0|SELECT	COUNT(*)-0+1 FROM user ta
+Servers\Unnamed\QueryHistory\44<|||>1<|||>2021-04-14 09:41:09|aa|0|SELECT @rownum := (SELECT	COUNT(*)-0+1 FROM user ta)
+Servers\Unnamed\QueryHistory\45<|||>1<|||>2021-04-14 09:41:25|aa|0|SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,<{{{><}}}>				ta.*<{{{><}}}>FROM 			user ta,<{{{><}}}>				(SELECT @rownum := (SELECT	COUNT(*)-0+1 FROM user ta)) tb<{{{><}}}>-- LIMIT			0, 3
+Servers\Unnamed\QueryHistory\55<|||>1<|||>2021-04-14 09:42:48|aa|0|SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,<{{{><}}}>				ta.*<{{{><}}}>FROM 			user ta,<{{{><}}}>				(SELECT @rownum := (SELECT	COUNT(*)-0+1 FROM user ta)) tb<{{{><}}}>LIMIT			3, 3
+Servers\Unnamed\QueryHistory\43<|||>1<|||>2021-04-14 09:42:57|aa|0|SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,<{{{><}}}>				ta.*<{{{><}}}>FROM 			user ta,<{{{><}}}>				(SELECT @rownum := (SELECT	COUNT(*)-3+1 FROM user ta)) tb<{{{><}}}>LIMIT			3, 3
+Servers\Unnamed\QueryHistory\62<|||>1<|||>2021-04-14 09:44:02|aa|0|SELECT		*<{{{><}}}>FROM			board<{{{><}}}>LIMIT			0, 3
+Servers\Unnamed\QueryHistory\63<|||>1<|||>2021-04-14 09:46:42|aa|0|SELECT		*<{{{><}}}>FROM			board
+Servers\Unnamed\QueryHistory\50<|||>1<|||>2021-04-14 09:46:55|aa|0|SELECT		*<{{{><}}}>FROM			board<{{{><}}}>LIMIT			5
+Servers\Unnamed\QueryHistory\64<|||>1<|||>2021-04-14 10:45:16|aa|0|SELECT 		*FROM 			board LIMIT			0, 3
+Servers\Unnamed\QueryHistory\65<|||>1<|||>2021-04-14 10:47:24|aa|0|SELECT 		* FROM 			board LIMIT			1, 3
+Servers\Unnamed\QueryHistory\66<|||>1<|||>2021-04-14 11:56:36|aa|0|SELECT COUNT(*) count FROM board
+Servers\Unnamed\QueryHistory\67<|||>1<|||>2021-04-15 09:11:34|aa|0|SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,<{{{><}}}>				ta.*<{{{><}}}>FROM 			board ta,<{{{><}}}>				(SELECT @rownum := (SELECT	COUNT(*)-3+1 FROM board ta)) tb<{{{><}}}>LIMIT			3, 3
+Servers\Unnamed\QueryHistory\68<|||>1<|||>2021-04-15 09:19:18|aa|0|select * from user limit 3
+Servers\Unnamed\QueryHistory\69<|||>1<|||>2021-04-15 09:20:01|aa|0|select * from board limit 3
+Servers\Unnamed\QueryHistory\70<|||>1<|||>2021-04-15 11:54:55|aa|0|select * from user where u_idx=5<{{{><}}}><{{{><}}}>
+Servers\Unnamed\QueryHistory\71<|||>1<|||>2021-04-16 09:35:36|aa|0|SELECT		*<{{{><}}}>FROM			board ta<{{{><}}}>WHERE			a_idx = 3
+Servers\Unnamed\QueryHistory\72<|||>1<|||>2021-04-19 09:03:06|aa|15|UPDATE board SET a_writer = '배스' WHERE a_idx = '1';
+Servers\Unnamed\QueryHistory\73<|||>1<|||>2021-04-19 10:18:36|aa|0|SELECT		*<{{{><}}}>FROM			comment<{{{><}}}>
+Servers\Unnamed\QueryHistory\74<|||>1<|||>2021-04-19 10:24:09|aa|0|SELECT		*<{{{><}}}>FROM			comment<{{{><}}}>WHERE			a_idx = 5
