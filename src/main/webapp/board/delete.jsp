@@ -8,5 +8,6 @@
 </head>
 <body>
 <h2>삭제 완료</h2>
+<a href="/lcomputerstudy/board-list.do">돌아가기</a>
 </body>
 </html>

@@ -180,13 +180,14 @@ private static BoardDAO dao = null;
 			
 		try {
 			conn = DBConnection.getConnection();
-			String sql = "UPDATE board SET a_idx = ?,a_writer = ?,a_title = ?,a_count = ?,a_content = ? ";
+			String sql = "UPDATE board SET a_writer = ?,a_title = ?,a_count = ?,a_content = ? WHERE  a_idx = ? ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, board.getA_idx());
-			pstmt.setString(2, board.getA_writer());
-			pstmt.setString(3, board.getA_title());
-			pstmt.setInt(4, board.getA_count());
-			pstmt.setString(5, board.getA_content());
+			
+			pstmt.setString(1, board.getA_writer());
+			pstmt.setString(2, board.getA_title());
+			pstmt.setInt(3, board.getA_count());
+			pstmt.setString(4, board.getA_content());
+			pstmt.setInt(5, board.getA_idx());
 			pstmt.executeUpdate();
 		} catch( Exception ex) {
 			System.out.println("SQLException : "+ex.getMessage());
@@ -199,6 +200,32 @@ private static BoardDAO dao = null;
 			}
 		}
 	}
+	
+	public void deleteBoard(Board board) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+			
+		try {
+			conn = DBConnection.getConnection();
+			String sql = "DELETE FROM board WHERE  a_idx = ? ";
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setInt(1, board.getA_idx());
+			pstmt.executeUpdate();
+		} catch( Exception ex) {
+			System.out.println("SQLException : "+ex.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
 	
 	
 }

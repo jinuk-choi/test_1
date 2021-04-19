@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.lcomputer.service.BoardService;
+import com.lcomputer.service.CommentService;
 import com.lcomputer.service.UserService;
 import com.lcomputer.vo.Board;
+import com.lcomputer.vo.Comment;
 import com.lcomputer.vo.Pagination;
 import com.lcomputer.vo.User;
 
@@ -72,11 +74,14 @@ public class Controller extends HttpServlet {
 		String idx = null;
 		int count = 0;
 		BoardService boardService = null;
+		CommentService commentService = null;
 		Pagination pagination = null;
 		ArrayList<User> list = null;
 		ArrayList<Board> boardList = null;
+		ArrayList<Comment> commentList = null;
 		int aIdx = 0;
 		Board board = null;
+		Comment comment = null;
 		
 		
 		
@@ -137,9 +142,9 @@ public class Controller extends HttpServlet {
 					session = request.getSession();
 					session.setAttribute("u_idx", user.getU_idx());
 					session.setAttribute("u_id", user.getU_id());
-//					session.setAttribute("u_pw", user.getU_pw());
+					session.setAttribute("u_pw", user.getU_pw());
 					session.setAttribute("u_name", user.getU_name());
-//					session.setAttribute("user", user);
+					session.setAttribute("user", user);
 			
 					view = "user/login-result";
 				} else {
@@ -201,7 +206,11 @@ public class Controller extends HttpServlet {
 				boardService = BoardService.getInstance();
 				board = boardService.getBoardById(aIdx);
 				
+				commentService = CommentService.getInstance();
+				commentList = commentService.getComment(aIdx);
+				
 				request.setAttribute("board", board);
+				request.setAttribute("list", commentList);
 				view = "board/detail";
 				break;
 			
@@ -219,6 +228,7 @@ public class Controller extends HttpServlet {
 				
 				
 				board = new Board();
+				board.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
 				board.setA_writer(request.getParameter("id"));
 				board.setA_title(request.getParameter("title"));
 				board.setA_content(request.getParameter("content"));
@@ -228,8 +238,34 @@ public class Controller extends HttpServlet {
 						
 				view = "board/insert-result";
 				break;
-		
+			
+			case "/board-delete.do":
 				
+				
+				board = new Board();
+				board.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
+				
+				
+				boardService = BoardService.getInstance();
+				boardService.deleteBoard(board);
+						
+				view = "board/delete";
+				break;
+				
+			case "/comment-insert.do":
+				comment = new Comment();
+				comment.setB_name(request.getParameter("id"));
+				comment.setB_title(request.getParameter("title"));
+				comment.setB_content(request.getParameter("content"));
+				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
+				comment.setB_redate(request.getParameter("date"));
+				
+				commentService = CommentService.getInstance();
+				commentService.insertComment(comment);
+						
+				view = "board/insert-result";
+				break;
+
 				
 	
 		}
