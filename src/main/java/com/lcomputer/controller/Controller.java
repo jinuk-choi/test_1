@@ -257,9 +257,7 @@ public class Controller extends HttpServlet {
 				comment.setB_name(request.getParameter("id"));
 				comment.setB_title(request.getParameter("title"));
 				comment.setB_content(request.getParameter("content"));
-				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
-				comment.setB_redate(request.getParameter("date"));
-				
+				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));						
 				commentService = CommentService.getInstance();
 				commentService.insertComment(comment);
 						

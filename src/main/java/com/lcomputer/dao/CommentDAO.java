@@ -74,14 +74,13 @@ private static CommentDAO dao = null;
 			
 		try {
 			conn = DBConnection.getConnection();
-			String sql = "insert into comment(b_idx,b_name,b_title,b_content,a_idx,b_redate) values(?,?,?,?,?,?)";
+			String sql = "insert into comment(b_idx,b_name,b_title,b_content,a_idx) values(?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, comment.getB_idx());
 			pstmt.setString(2, comment.getB_name());
 			pstmt.setString(3, comment.getB_title());
 			pstmt.setString(4, comment.getB_content());
 			pstmt.setInt(5, comment.getA_idx());
-			pstmt.setString(6, comment.getB_redate());
 			pstmt.executeUpdate();
 		} catch( Exception ex) {
 			System.out.println("SQLException : "+ex.getMessage());
