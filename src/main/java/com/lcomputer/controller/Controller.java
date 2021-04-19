@@ -10,7 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+<<<<<<< HEAD
 import com.lcomputer.service.UserService;
+=======
+import com.lcomputer.service.BoardService;
+import com.lcomputer.service.CommentService;
+import com.lcomputer.service.UserService;
+import com.lcomputer.vo.Board;
+import com.lcomputer.vo.Comment;
+>>>>>>> a63f267cd3a1064aadea816891d5d238355c2e47
 import com.lcomputer.vo.Pagination;
 import com.lcomputer.vo.User;
 
@@ -28,13 +36,19 @@ public class Controller extends HttpServlet {
 		
 		String[] authList = {
 				"/user-list.do"
-				,"/user-insert.do"
+				/*,"/user-insert.do"
 				,"/user-insert-process.do"
 				,"/user-detail.do"
 				,"/user-edit.do"
 				,"/user-edit-process.do"
+<<<<<<< HEAD
 				,"/logout.do"
 			};
+=======
+				,"/logout.do"  */
+				
+			};  
+>>>>>>> a63f267cd3a1064aadea816891d5d238355c2e47
 		
 		for (String item : authList) {
 			if (item.equals(command)) {
@@ -43,8 +57,8 @@ public class Controller extends HttpServlet {
 				}
 			}
 		}
-		return command;
-	}
+		return command;   
+	} 
 	
 
 //오오
@@ -66,6 +80,21 @@ public class Controller extends HttpServlet {
 		int pageNum = 0;
 		String pw = null;
 		String idx = null;
+<<<<<<< HEAD
+=======
+		int count = 0;
+		BoardService boardService = null;
+		CommentService commentService = null;
+		Pagination pagination = null;
+		ArrayList<User> list = null;
+		ArrayList<Board> boardList = null;
+		ArrayList<Comment> commentList = null;
+		int aIdx = 0;
+		Board board = null;
+		Comment comment = null;
+		
+		
+>>>>>>> a63f267cd3a1064aadea816891d5d238355c2e47
 		
 		command = checkSession(request, response, command);
 		
@@ -124,9 +153,9 @@ public class Controller extends HttpServlet {
 					session = request.getSession();
 					session.setAttribute("u_idx", user.getU_idx());
 					session.setAttribute("u_id", user.getU_id());
-//					session.setAttribute("u_pw", user.getU_pw());
+					session.setAttribute("u_pw", user.getU_pw());
 					session.setAttribute("u_name", user.getU_name());
-//					session.setAttribute("user", user);
+					session.setAttribute("user", user);
 			
 					view = "user/login-result";
 				} else {
@@ -146,6 +175,110 @@ public class Controller extends HttpServlet {
 			case "/access-denied.do":
 				view = "user/access-denied";
 				break;
+<<<<<<< HEAD
+=======
+				
+			case "/board-list.do":
+				reqPage = request.getParameter("page");
+				if (reqPage != null) { 
+					page = Integer.parseInt(reqPage);
+					
+				}
+				boardService = BoardService.getInstance();
+				boardList = boardService.getBoard(page);
+				count = boardService.getCount();	
+				pagination = new Pagination(page, count);
+												
+			
+				request.setAttribute("list", boardList);
+				request.setAttribute("pagination", pagination);							
+				
+				
+				view = "board/list";
+				break;
+				
+				
+			case "/board-insert.do":
+				view = "board/insert";
+				break;
+				
+			case "/board-insert-process.do":
+				board = new Board();
+				board.setA_writer(request.getParameter("id"));
+				board.setA_title(request.getParameter("title"));
+				board.setA_content(request.getParameter("content"));
+				
+				boardService = BoardService.getInstance();
+				boardService.insertBoard(board);
+						
+				view = "board/insert-result";
+				break;
+				
+			case "/board-detail.do":
+				aIdx = Integer.parseInt(request.getParameter("a_idx"));
+				boardService = BoardService.getInstance();
+				board = boardService.getBoardById(aIdx);
+				
+				commentService = CommentService.getInstance();
+				commentList = commentService.getComment(aIdx);
+				
+				request.setAttribute("board", board);
+				request.setAttribute("list", commentList);
+				view = "board/detail";
+				break;
+			
+			case "/board-edit.do":
+				aIdx = Integer.parseInt(request.getParameter("a_idx"));
+				boardService = BoardService.getInstance();
+				board = boardService.getBoardById(aIdx);
+				
+				request.setAttribute("board", board);
+				
+				view = "board/edit";
+				break;
+				
+			case "/board-edit-process.do":
+				
+				
+				board = new Board();
+				board.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
+				board.setA_writer(request.getParameter("id"));
+				board.setA_title(request.getParameter("title"));
+				board.setA_content(request.getParameter("content"));
+				
+				boardService = BoardService.getInstance();
+				boardService.editBoard(board);
+						
+				view = "board/insert-result";
+				break;
+			
+			case "/board-delete.do":
+				
+				
+				board = new Board();
+				board.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
+				
+				
+				boardService = BoardService.getInstance();
+				boardService.deleteBoard(board);
+						
+				view = "board/delete";
+				break;
+				
+			case "/comment-insert.do":
+				comment = new Comment();
+				comment.setB_name(request.getParameter("id"));
+				comment.setB_title(request.getParameter("title"));
+				comment.setB_content(request.getParameter("content"));
+				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));						
+				commentService = CommentService.getInstance();
+				commentService.insertComment(comment);
+						
+				view = "board/insert-result";
+				break;
+
+				
+>>>>>>> a63f267cd3a1064aadea816891d5d238355c2e47
 	
 		}
 		

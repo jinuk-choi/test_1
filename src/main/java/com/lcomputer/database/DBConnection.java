@@ -6,14 +6,19 @@ import java.sql.SQLException;
 
 public class DBConnection {
 	
-	public static Connection getConnection() throws SQLException, ClassNotFoundException {
+	public static Connection getConnection() throws SQLException {
 		Connection conn = null;
 		
 		String url = "jdbc:mysql://localhost:3306/aa";
 		String id = "root";
 		String pw = "1234";
 				
-		Class.forName("org.mariadb.jdbc.Driver");
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		conn = DriverManager.getConnection(url, id, pw);
 		
 		return conn;
