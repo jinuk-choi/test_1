@@ -10,15 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-<<<<<<< HEAD
-import com.lcomputer.service.UserService;
-=======
 import com.lcomputer.service.BoardService;
 import com.lcomputer.service.CommentService;
 import com.lcomputer.service.UserService;
 import com.lcomputer.vo.Board;
 import com.lcomputer.vo.Comment;
->>>>>>> a63f267cd3a1064aadea816891d5d238355c2e47
 import com.lcomputer.vo.Pagination;
 import com.lcomputer.vo.User;
 
@@ -41,14 +37,9 @@ public class Controller extends HttpServlet {
 				,"/user-detail.do"
 				,"/user-edit.do"
 				,"/user-edit-process.do"
-<<<<<<< HEAD
-				,"/logout.do"
-			};
-=======
 				,"/logout.do"  */
 				
 			};  
->>>>>>> a63f267cd3a1064aadea816891d5d238355c2e47
 		
 		for (String item : authList) {
 			if (item.equals(command)) {
@@ -61,7 +52,7 @@ public class Controller extends HttpServlet {
 	} 
 	
 
-//오오
+
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -78,10 +69,9 @@ public class Controller extends HttpServlet {
 		
 		int page = 1;
 		int pageNum = 0;
+		String reqPage = null;
 		String pw = null;
 		String idx = null;
-<<<<<<< HEAD
-=======
 		int count = 0;
 		BoardService boardService = null;
 		CommentService commentService = null;
@@ -92,9 +82,9 @@ public class Controller extends HttpServlet {
 		int aIdx = 0;
 		Board board = null;
 		Comment comment = null;
+		int bIdx = 0;
 		
 		
->>>>>>> a63f267cd3a1064aadea816891d5d238355c2e47
 		
 		command = checkSession(request, response, command);
 		
@@ -104,17 +94,17 @@ public class Controller extends HttpServlet {
 			
 		switch (command) {
 			case "/user-list.do":
-				String reqPage = request.getParameter("page");
+				reqPage = request.getParameter("page");
 				if (reqPage != null) { 
 					page = Integer.parseInt(reqPage);
 				}
 				UserService userService = UserService.getInstance();
-				ArrayList<User> list = userService.getUsers(page);
-				Pagination pagination = new Pagination(page);
-				usercount = userService.getUsersCount();
+				list = userService.getUsers(page);
+				count = userService.getUsersCount();
+				
+				pagination = new Pagination(page, count);
 												
 				request.setAttribute("list", list);
-				request.setAttribute("usercount", usercount);
 				request.setAttribute("pagination", pagination);
 				
 				view = "user/list";
@@ -175,8 +165,6 @@ public class Controller extends HttpServlet {
 			case "/access-denied.do":
 				view = "user/access-denied";
 				break;
-<<<<<<< HEAD
-=======
 				
 			case "/board-list.do":
 				reqPage = request.getParameter("page");
@@ -276,9 +264,46 @@ public class Controller extends HttpServlet {
 						
 				view = "board/insert-result";
 				break;
+				
+			case "/comment-delete.do":
+				
+				
+				comment = new Comment();
+				comment.setB_idx(Integer.parseInt(request.getParameter("b_idx")));
+				
+				
+				commentService = CommentService.getInstance();
+				commentService.deleteComment(comment);
+						
+				view = "board/insert-result";
+				break;
+				
+			case "/comment-edit.do":
+				bIdx = Integer.parseInt(request.getParameter("b_idx"));
+				commentService = CommentService.getInstance();
+				comment = commentService.getCommentById(bIdx);
+				
+				request.setAttribute("comment", comment);
+				
+				view = "comment/edit";
+				break;
+				
+			case "/comment-edit-process.do":
+				
+				
+				comment = new Comment();
+				comment.setB_idx(Integer.parseInt(request.getParameter("b_idx")));
+				comment.setB_name(request.getParameter("id"));
+				comment.setB_content(request.getParameter("content"));
+				comment.setB_redate(request.getParameter("date"));
+				
+				commentService = CommentService.getInstance();
+				commentService.editComment(comment);
+						
+				view = "board/insert-result";
+				break;
 
 				
->>>>>>> a63f267cd3a1064aadea816891d5d238355c2e47
 	
 		}
 		

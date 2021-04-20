@@ -29,6 +29,18 @@ public class CommentService {
 	public void insertComment(Comment comment) {
 		dao.insertComment(comment);
 	}
+	
+	public void deleteComment(Comment comment) {
+		dao.deleteComment(comment);
+	}
+	
+	public Comment getCommentById(int bIdx) {
+		return dao.getCommentById(bIdx);
+	}
+	
+	public void editComment(Comment comment) {
+		dao.editComment(comment);
+	}
 
 	
 	

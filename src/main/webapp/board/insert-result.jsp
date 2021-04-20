@@ -7,7 +7,7 @@
 <title>게시글 저장</title>
 </head>
 <body>
-<h1>수정 완료</h1>
+<h1>완료</h1>
 <a href="/lcomputerstudy/board-list.do">돌아가기</a>
 </body>
 </html>

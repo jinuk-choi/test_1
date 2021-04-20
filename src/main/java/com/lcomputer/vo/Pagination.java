@@ -1,9 +1,7 @@
 package com.lcomputer.vo;
 
-import com.lcomputer.service.UserService;
-
 public class Pagination {
-	int userCount;       // user테이블에 등록 된 총 user 수
+	int count;       // user테이블에 등록 된 총 user 수
 	int page;           // 현재 패이지번호
 	int pageNum;          // userCount / page = 화면에 나타 낼 user index번호
 	int startPage;     //﻿ pagination의 시작(ex,1,6,11)
@@ -13,17 +11,16 @@ public class Pagination {
 	int nextPage;     // pagination의 다음 목록
 	public static final int pageUnit=5;  // 한번에 불러 올 pagination 수
 	public static final int perPage=3;   // 한번에 불러 올 userCount 수
-	UserService userService = null;
 	
 	public Pagination() {
 		
 	}
-	public Pagination(int page) {		
+	public Pagination(int page, int count) {		
 		this.page = page;
-		userService = UserService.getInstance();
-		userCount = userService.getUsersCount();
+		this.count = count;
+		
 		startPage =((page-1)/pageUnit)*pageUnit+1;
-		lastPage = (int)Math.ceil(userCount / (float)perPage);
+		lastPage = (int)Math.ceil(count / (float)perPage);
 		endPage = startPage+pageUnit-1;
 		endPage = endPage < lastPage ? endPage : lastPage;
 		prevPage=(startPage-1);
@@ -31,11 +28,11 @@ public class Pagination {
 		
 	}
 	
-	public int getUserCount() {
-		return userCount;
+	public int getCount() {
+		return count;
 	}
-	public void setUserCount(int userCount) {
-		this.userCount = userCount;
+	public void setCount(int count) {
+		this.count = count;
 	}
 	public int getPage() {
 		return page;

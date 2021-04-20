@@ -53,6 +53,8 @@
 			<div>작성자 : ${comment.b_name}</div>&emsp;&emsp;
 			<div>내용 : ${comment.b_content}</div>&emsp;&emsp;
 			<div>날짜 : ${comment.b_redate}</div>
+			<div><a href="comment-edit.do?b_idx=${comment.b_idx}">수정</a></div>
+			<div><a href="comment-delete.do?b_idx=${comment.b_idx}">삭제</a></div>
 		</div>
 	</c:forEach>
 	

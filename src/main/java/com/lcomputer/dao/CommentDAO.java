@@ -93,6 +93,97 @@ private static CommentDAO dao = null;
 			}
 		}
 	}
+	
+	public void deleteComment(Comment comment) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+			
+		try {
+			conn = DBConnection.getConnection();
+			String sql = "DELETE FROM comment WHERE  b_idx = ? ";
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setInt(1, comment.getB_idx());
+			pstmt.executeUpdate();
+		} catch( Exception ex) {
+			System.out.println("SQLException : "+ex.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public Comment getCommentById(int bIdx) {
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			Connection conn = null;
+			Comment comment = null;
+			
+			try {
+				conn = DBConnection.getConnection();
+			    String query = "select * from comment where b_idx=?";
+			   	pstmt = conn.prepareStatement(query);
+			   	pstmt.setInt(1, bIdx);
+			   	
+			    rs = pstmt.executeQuery();
+			
+			    if(rs.next()){     
+		   	      
+		           comment = new Comment();
+		           comment.setB_idx(rs.getInt("b_idx"));
+		           comment.setB_name(rs.getString("b_name"));
+		           comment.setB_title(rs.getString("b_title"));
+		           comment.setB_content(rs.getString("b_content"));
+		           comment.setB_redate(rs.getString("b_redate"));
+		           
+			    }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					rs.close();
+					pstmt.close();
+					conn.close();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		    
+			return comment;
+	}
+	
+	public void editComment(Comment comment) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+			
+		try {
+			conn = DBConnection.getConnection();
+			String sql = "UPDATE comment SET b_name = ?,b_content = ?,b_redate = ? WHERE  b_idx = ? ";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, comment.getB_name());
+			pstmt.setString(2, comment.getB_content());
+			pstmt.setString(3, comment.getB_redate());
+			pstmt.setInt(4, comment.getB_idx());
+			pstmt.executeUpdate();
+		} catch( Exception ex) {
+			System.out.println("SQLException : "+ex.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 
 
 
