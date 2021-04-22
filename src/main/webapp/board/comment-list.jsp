@@ -7,12 +7,12 @@
 		<div class="myFlex">
 			<div>작성자 : ${comment.user.u_name}</div>&emsp;&emsp;
 			<div>내용 : ${comment.b_content}</div>&emsp;&emsp;
-			<div><button type="button" class="btnUpdateForm">수정</button></div>
-			<div><a href="comment-delete.do?b_idx=${comment.b_idx}">삭제</a></div>
+			<div><button type="button" class="btnUpdateForm">수정</button></div>&emsp;
+			<div><button type="button" class="btnDeletForm" b_idx="${comment.b_idx}">삭제</button></div>
 		</div>
 		<div class="myFlex" style="display: none;">
 			<div>작성자 : ${comment.user.u_name}</div>&emsp;&emsp;
-			<div>내용 : <textarea rows="1" cols="50" name="editcon" id="editcon">${comment.b_content}</textarea></div>&emsp;&emsp;
+			<div>내용 : <textarea rows="1" cols="50"  id="editcon">${comment.b_content}</textarea></div>&emsp;&emsp;
 			<div><button type="button" class="btnEditForm" b_idx="${comment.b_idx}" >등록</button></div>
 			<div><a href="">취소</a></div>
 		</div>

@@ -169,7 +169,7 @@ private static CommentDAO dao = null;
 			
 		try {
 			conn = DBConnection.getConnection();
-			String sql = "UPDATE comment SET  a_idx = ?, b_content = ? WHERE  b_idx = ? ";
+			String sql = "UPDATE comment SET a_idx = ?, b_content = ? WHERE  b_idx = ? ";
 			pstmt = conn.prepareStatement(sql);
 			
 			//pstmt.setInt(1, comment.getU_idx());

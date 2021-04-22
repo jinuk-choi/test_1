@@ -53,12 +53,12 @@
 		<div class="myFlex">
 			<div>작성자 : ${comment.user.u_name}</div>&emsp;&emsp;
 			<div>내용 : ${comment.b_content}</div>&emsp;&emsp;
-			<div><button type="button" class="btnUpdateForm">수정</button></div>
-			<div><a href="comment-delete.do?b_idx=${comment.b_idx}">삭제</a></div>
+			<div><button type="button" class="btnUpdateForm">수정</button></div>&emsp;
+			<div><button type="button" class="btnDeletForm" b_idx="${comment.b_idx}">삭제</button></div>
 		</div>
 		<div class="myFlex" style="display: none;">
 			<div>작성자 : ${comment.user.u_name}</div>&emsp;&emsp;
-			<div>내용 : <textarea rows="1" cols="50" name="editcon" id="editcon">${comment.b_content}</textarea></div>&emsp;&emsp;
+			<div>내용 : <textarea rows="1" cols="50"  id="editcon">${comment.b_content}</textarea></div>&emsp;&emsp;
 			<div><button type="button" class="btnEditForm" b_idx="${comment.b_idx}" >등록</button></div>
 			<div><a href="">취소</a></div>
 		</div>
@@ -93,18 +93,37 @@ $(document).on('click', '.btnUpdateForm', function () {
 });
 
 $(document).on('click', '.btnEditForm', function () {
-	let content = $('#editcon').val();
-	let a_idx = '${board.a_idx}';
+	let editcon = $('#editcon').val();
 	let b_idx = $(this).attr('b_idx');
+	let a_idx = '${board.a_idx}';
 
 	$.ajax({
 		 method: "POST",
 		 url: "/lcomputerstudy/aj-comment-edit.do",
 		 data: { 
 	
-			 editcon: content,
-			 a_idx: a_idx,
-			 b_idx: b_idx
+			 editcon: editcon,
+			 b_idx: b_idx,
+			 a_idx: a_idx
+
+		 }
+	})
+	.done(function( data ) {
+	 	 console.log(data);
+	 	 $('#commentList').html(data);
+	});
+});
+
+$(document).on('click', '.btnDeletForm', function () {
+	let b_idx = $(this).attr('b_idx');
+	let a_idx = '${board.a_idx}';
+
+	$.ajax({
+		 method: "POST",
+		 url: "/lcomputerstudy/aj-comment-delete.do",
+		 data: { 	
+			 b_idx: b_idx,
+			 a_idx: a_idx
 
 		 }
 	})

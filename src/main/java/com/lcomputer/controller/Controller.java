@@ -280,7 +280,7 @@ public class Controller extends HttpServlet {
 			case "/aj-comment-edit.do":
 				comment = new Comment();
 				//comment.setU_idx(Integer.parseInt(request.getParameter("id")));
-				comment.setB_content(request.getParameter("content"));
+				comment.setB_content(request.getParameter("editcon"));
 				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
 				comment.setB_idx(Integer.parseInt(request.getParameter("b_idx")));
 								
@@ -292,21 +292,21 @@ public class Controller extends HttpServlet {
 				view = "board/comment-list";
 				break;
 				
-				
-				
+								
 			
-			
-			case "/comment-delete.do":
+			case "/aj-comment-delete.do":
 				
 				
 				comment = new Comment();
 				comment.setB_idx(Integer.parseInt(request.getParameter("b_idx")));
-				
+				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
 				
 				commentService = CommentService.getInstance();
 				commentService.deleteComment(comment);
+				commentList = commentService.getComment(comment.getA_idx());
+				request.setAttribute("list", commentList);
 						
-				view = "board/insert-result";
+				view = "board/comment-list";
 				break;
 				
 			/*case "/comment-edit.do":
