@@ -143,9 +143,7 @@ public class Controller extends HttpServlet {
 					session = request.getSession();
 					session.setAttribute("u_idx", user.getU_idx());
 					session.setAttribute("u_id", user.getU_id());
-					session.setAttribute("u_pw", user.getU_pw());
 					session.setAttribute("u_name", user.getU_name());
-					session.setAttribute("user", user);
 			
 					view = "user/login-result";
 				} else {
@@ -253,18 +251,51 @@ public class Controller extends HttpServlet {
 				view = "board/delete";
 				break;
 				
-			case "/comment-insert.do":
+			/*case "/comment-insert.do":
 				comment = new Comment();
-				comment.setB_name(request.getParameter("id"));
-				comment.setB_title(request.getParameter("title"));
+				comment.setU_idx(Integer.parseInt(request.getParameter("id")));
 				comment.setB_content(request.getParameter("content"));
 				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));						
 				commentService = CommentService.getInstance();
 				commentService.insertComment(comment);
 						
 				view = "board/insert-result";
+				break; */
+				
+			case "/aj-comment-insert.do":
+				comment = new Comment();
+				comment.setU_idx(Integer.parseInt(request.getParameter("id")));
+				comment.setB_content(request.getParameter("content"));
+				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));						
+				commentService = CommentService.getInstance();
+				commentService.insertComment(comment);
+				
+				commentService = CommentService.getInstance();
+				commentList = commentService.getComment(comment.getA_idx());
+				
+				request.setAttribute("list", commentList);
+				view = "board/comment-list";
 				break;
 				
+			case "/aj-comment-edit.do":
+				comment = new Comment();
+				//comment.setU_idx(Integer.parseInt(request.getParameter("id")));
+				comment.setB_content(request.getParameter("content"));
+				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
+				comment.setB_idx(Integer.parseInt(request.getParameter("b_idx")));
+								
+				commentService = CommentService.getInstance();
+				commentService.editComment(comment);
+				commentList = commentService.getComment(comment.getA_idx());
+				request.setAttribute("list", commentList);
+				
+				view = "board/comment-list";
+				break;
+				
+				
+				
+			
+			
 			case "/comment-delete.do":
 				
 				
@@ -278,7 +309,7 @@ public class Controller extends HttpServlet {
 				view = "board/insert-result";
 				break;
 				
-			case "/comment-edit.do":
+			/*case "/comment-edit.do":
 				bIdx = Integer.parseInt(request.getParameter("b_idx"));
 				commentService = CommentService.getInstance();
 				comment = commentService.getCommentById(bIdx);
@@ -288,12 +319,12 @@ public class Controller extends HttpServlet {
 				view = "comment/edit";
 				break;
 				
-			case "/comment-edit-process.do":
+			case "/comment-edit-process.do":  
 				
 				
 				comment = new Comment();
 				comment.setB_idx(Integer.parseInt(request.getParameter("b_idx")));
-				comment.setB_name(request.getParameter("id"));
+				comment.setU_idx(Integer.parseInt(request.getParameter("id")));
 				comment.setB_content(request.getParameter("content"));
 				comment.setB_redate(request.getParameter("date"));
 				
@@ -301,15 +332,8 @@ public class Controller extends HttpServlet {
 				commentService.editComment(comment);
 						
 				view = "board/insert-result";
-				break;
-
-				
-	
+				break;  */
 		}
-		
-		
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher(view+".jsp");
 		rd.forward(request, response);
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.lcomputer.database.DBConnection;
 import com.lcomputer.vo.Board;
 import com.lcomputer.vo.Comment;
+import com.lcomputer.vo.User;
 
 public class CommentDAO {
 	
@@ -36,7 +37,7 @@ private static CommentDAO dao = null;
 		try {
 			conn = DBConnection.getConnection();
 			String query = new StringBuilder()
-					.append("SELECT * FROM comment WHERE a_idx=?")
+					.append("SELECT ta.*, tb.u_name, tb.u_id FROM comment ta LEFT JOIN user tb ON ta.u_idx = tb.u_idx WHERE a_idx=?")
 					.toString();
 	       	pstmt = conn.prepareStatement(query); 
 	       	pstmt.setInt(1,a_idx);
@@ -47,10 +48,15 @@ private static CommentDAO dao = null;
 	        	Comment comment = new Comment();
 	        	//comment.setRownum(rs.getInt("ROWNUM"));
       	       	comment.setB_idx(rs.getInt("b_idx"));
-       	        comment.setB_name(rs.getString("b_name"));
-       	       	comment.setB_title(rs.getString("b_title"));
+       	        comment.setU_idx(rs.getInt("u_idx"));
        	       	comment.setB_content(rs.getString("b_content"));
-       	       	comment.setB_redate(rs.getString("b_redate"));
+       	       	//comment.setB_redate(rs.getString("b_redate"));
+       	       	
+       	      	User user = new User();
+       	       	user.setU_name(rs.getString("u_name"));
+       	       	user.setU_idx(rs.getInt("u_idx"));
+       	        comment.setUser(user);
+       	       //	comment.getUser().getU_name();
        	       	
        	       	list.add(comment);
 	        }
@@ -74,13 +80,12 @@ private static CommentDAO dao = null;
 			
 		try {
 			conn = DBConnection.getConnection();
-			String sql = "insert into comment(b_idx,b_name,b_title,b_content,a_idx) values(?,?,?,?,?)";
+			String sql = "insert into comment(b_idx,u_idx,b_content,a_idx) values(?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, comment.getB_idx());
-			pstmt.setString(2, comment.getB_name());
-			pstmt.setString(3, comment.getB_title());
-			pstmt.setString(4, comment.getB_content());
-			pstmt.setInt(5, comment.getA_idx());
+			pstmt.setInt(2, comment.getU_idx());
+			pstmt.setString(3, comment.getB_content());
+			pstmt.setInt(4, comment.getA_idx());
 			pstmt.executeUpdate();
 		} catch( Exception ex) {
 			System.out.println("SQLException : "+ex.getMessage());
@@ -137,10 +142,10 @@ private static CommentDAO dao = null;
 		   	      
 		           comment = new Comment();
 		           comment.setB_idx(rs.getInt("b_idx"));
-		           comment.setB_name(rs.getString("b_name"));
+		           comment.setU_idx(rs.getInt("u_idx"));
 		           comment.setB_title(rs.getString("b_title"));
 		           comment.setB_content(rs.getString("b_content"));
-		           comment.setB_redate(rs.getString("b_redate"));
+		           //comment.setB_redate(rs.getString("b_redate"));
 		           
 			    }
 			} catch (SQLException e) {
@@ -164,13 +169,13 @@ private static CommentDAO dao = null;
 			
 		try {
 			conn = DBConnection.getConnection();
-			String sql = "UPDATE comment SET b_name = ?,b_content = ?,b_redate = ? WHERE  b_idx = ? ";
+			String sql = "UPDATE comment SET  a_idx = ?, b_content = ? WHERE  b_idx = ? ";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, comment.getB_name());
+			//pstmt.setInt(1, comment.getU_idx());
+			pstmt.setInt(1, comment.getA_idx());
 			pstmt.setString(2, comment.getB_content());
-			pstmt.setString(3, comment.getB_redate());
-			pstmt.setInt(4, comment.getB_idx());
+			pstmt.setInt(3, comment.getB_idx());
 			pstmt.executeUpdate();
 		} catch( Exception ex) {
 			System.out.println("SQLException : "+ex.getMessage());

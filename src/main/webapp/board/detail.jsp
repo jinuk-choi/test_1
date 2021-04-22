@@ -21,6 +21,7 @@
 		display: flex;
 	}
 </style>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
 	<h2> 게시글 상세보기 </h2>
@@ -41,22 +42,79 @@
 		</tr>
 	</table>
 <h2> 댓글 작성 </h2>
-	<form action="comment-insert.do" name="board" method="post">
-		<input type="hidden" name="a_idx" value="${board.a_idx}">
-		<p> 작성자 : <input type="text" name="id"></p>
-		<p> 제목 : <input type="text" name="title"></p>
-		<p> 내용 : <input type="text" style="width:500px; height:50px;" name="content">&emsp;<input type="submit" value="작성하기"></p>
-	</form>
+<div>
+	<input type="hidden" name="a_idx" value="${board.a_idx}">
+	<p> 작성자 : ${sessionScope.u_name}</p>
+	<p> 내용 : <input type="text" style="width:500px; height:50px;" name="content" id="content" >&emsp;<input type="button" value="작성하기" id="btnReg"></p>
+</div>
 <h2> 댓글 보기 </h2>
+<div id="commentList">
 	<c:forEach items="${list}" var="comment" varStatus="status">
 		<div class="myFlex">
-			<div>작성자 : ${comment.b_name}</div>&emsp;&emsp;
+			<div>작성자 : ${comment.user.u_name}</div>&emsp;&emsp;
 			<div>내용 : ${comment.b_content}</div>&emsp;&emsp;
-			<div>날짜 : ${comment.b_redate}</div>
-			<div><a href="comment-edit.do?b_idx=${comment.b_idx}">수정</a></div>
+			<div><button type="button" class="btnUpdateForm">수정</button></div>
 			<div><a href="comment-delete.do?b_idx=${comment.b_idx}">삭제</a></div>
 		</div>
+		<div class="myFlex" style="display: none;">
+			<div>작성자 : ${comment.user.u_name}</div>&emsp;&emsp;
+			<div>내용 : <textarea rows="1" cols="50" name="editcon" id="editcon">${comment.b_content}</textarea></div>&emsp;&emsp;
+			<div><button type="button" class="btnEditForm" b_idx="${comment.b_idx}" >등록</button></div>
+			<div><a href="">취소</a></div>
+		</div>
 	</c:forEach>
+</div>
+
+<script>
+$(document).on('click', '#btnReg', function () {
+	let id = '${sessionScope.u_idx}';
+	let content = $('#content').val();
+	let a_idx = '${board.a_idx}';
+	
+	$.ajax({
+		 method: "POST",
+		 url: "/lcomputerstudy/aj-comment-insert.do",
+		 data: { 
+			 id: id, 
+			 content: content,
+			 a_idx: a_idx
+		 }
+	})
+	.done(function( data ) {
+	 	 console.log(data);
+	 	 $('#commentList').html(data);
+	});
+});
+
+$(document).on('click', '.btnUpdateForm', function () {
+	let viewDiv = $(this).parent().parent();
+	viewDiv.next().show();
+	viewDiv.hide();
+});
+
+$(document).on('click', '.btnEditForm', function () {
+	let content = $('#editcon').val();
+	let a_idx = '${board.a_idx}';
+	let b_idx = $(this).attr('b_idx');
+
+	$.ajax({
+		 method: "POST",
+		 url: "/lcomputerstudy/aj-comment-edit.do",
+		 data: { 
+	
+			 editcon: content,
+			 a_idx: a_idx,
+			 b_idx: b_idx
+
+		 }
+	})
+	.done(function( data ) {
+	 	 console.log(data);
+	 	 $('#commentList').html(data);
+	});
+});
+	
+</script>
 	
 </body>
 </html>
