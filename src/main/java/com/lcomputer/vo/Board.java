@@ -8,9 +8,37 @@ public class Board {
 	private int a_count;
 	private String a_content;
 	private int rownum;
+	private String a_date;
+	private int a_group;
+	private int a_order;
+	private int a_depth;
 	
 	
 	
+	public int getA_group() {
+		return a_group;
+	}
+	public void setA_group(int a_group) {
+		this.a_group = a_group;
+	}
+	public int getA_order() {
+		return a_order;
+	}
+	public void setA_order(int a_order) {
+		this.a_order = a_order;
+	}
+	public int getA_depth() {
+		return a_depth;
+	}
+	public void setA_depth(int a_depth) {
+		this.a_depth = a_depth;
+	}
+	public String getA_date() {
+		return a_date;
+	}
+	public void setA_date(String a_date) {
+		this.a_date = a_date;
+	}
 	public int getA_idx() {
 		return a_idx;
 	}

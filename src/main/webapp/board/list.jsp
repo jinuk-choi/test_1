@@ -12,9 +12,11 @@
 	h1 {
 			text-align:center;
 	}
-
-
-
+	
+	h2 {
+			text-align:center;
+	}
+	
 	table {
 			border-collapse:collapse;
 	}
@@ -67,12 +69,13 @@
 <h1>게시글 목록</h1>
 <table >
 	<tr>
-		<td colspan="4">전체 게시글 수 : ${pagination.count }</td>
+		<td colspan="5">전체 게시글 수 : ${pagination.count }</td>
 	</tr>
 	<tr>
 	    <th>NO</th>
 		<th>제목</th>
 		<th>이름</th>
+		<th>작성일시</th>
 		<th>조회수</th>
 	</tr>
 	<c:forEach items="${list}" var="board" varStatus="status">
@@ -80,6 +83,7 @@
 			<td>${board.rownum}</td>
 			<td><a href="board-detail.do?a_idx=${board.a_idx}">${board.a_title}</a></td>
 			<td>${board.a_writer}</td>
+			<td>${board.a_date}</td>
 			<td>${board.a_count}</td>
 		<tr>
 	</c:forEach>
@@ -87,7 +91,7 @@
 <div>
 	<ul>
 		 <c:choose>
-			<c:when test="${ pagination.prevPage >= 5}">
+			<c:when test="${ pagination.prevPage >= 3}">
 				<li>
 					<a href="board-list.do?page=${pagination.prevPage}">◀</a>		
 				</li>
@@ -114,11 +118,13 @@
 				<li style="">
 					<a href="board-list.do?page=${pagination.nextPage}">▶</a>
 				</li>
-			</c:when>
-			
-			
+			</c:when>	
 		</c:choose> 
 	</ul>
 </div>
+<div>
+<h2><a href="board-insert.do">게시글 작성하기</a></h2>
+</div>
+
 </body>
 </html>

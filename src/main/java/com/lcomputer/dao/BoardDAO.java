@@ -31,7 +31,7 @@ private static BoardDAO dao = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<Board> list = null;
-		int pageNum = (page-1)*3;
+		int pageNum = (page-1)*10;
 		
 
 
@@ -45,7 +45,7 @@ private static BoardDAO dao = null;
 					.append("				ta.*\n")
 					.append("FROM 			board ta,\n")
 					.append("				(SELECT @rownum := (SELECT	COUNT(*)-?+1 FROM board ta)) tb\n")
-					.append("LIMIT			?, 3\n")
+					.append("LIMIT			?, 10\n")
 					.toString();
 	       	pstmt = conn.prepareStatement(query); 
 	       	pstmt.setInt(1, pageNum);
@@ -61,6 +61,10 @@ private static BoardDAO dao = null;
        	       	board.setA_title(rs.getString("a_title"));
        	       	board.setA_content(rs.getString("a_content"));
        	       	board.setA_count(rs.getInt("a_count"));
+       	       	board.setA_date(rs.getString("a_date"));
+       	       	board.setA_group(rs.getInt("a_group"));
+       	       	board.setA_order(rs.getInt("a_order"));
+       	       	board.setA_depth(rs.getInt("a_depth"));
        	       	
        	       	list.add(board);
 	        }
@@ -84,14 +88,33 @@ private static BoardDAO dao = null;
 			
 		try {
 			conn = DBConnection.getConnection();
-			String sql = "insert into board(a_idx,a_writer,a_title,a_count,a_content) values(?,?,?,?,?)";
+			String sql = "insert into board(a_idx,a_writer,a_title,a_count,a_content,a_date,a_group,a_order,a_depth) values(?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board.getA_idx());
 			pstmt.setString(2, board.getA_writer());
 			pstmt.setString(3, board.getA_title());
 			pstmt.setInt(4, board.getA_count());
 			pstmt.setString(5, board.getA_content());
+			pstmt.setString(6, board.getA_date());
+			pstmt.setInt(7, board.getA_group());
+			pstmt.setInt(8, board.getA_order());
+			pstmt.setInt(9, board.getA_depth());
 			pstmt.executeUpdate();
+			pstmt.close();
+			if (board.getA_group() == 0) {	// 원글
+				// 원글의 a_group 을 auto_increment 된 a_idx 로 수정
+				sql = "update board set a_group = last_insert_id() where a_idx = last_insert_id()";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.executeUpdate();
+			} else {						// 답글
+				// 원글의 a_group 을 auto_increment 된 a_idx 로 수정
+				sql = "update board set a_order = a_order + 1 where a_group = ? and a_order >= ? and a_idx <> last_insert_id()";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, board.getA_group());
+				pstmt.setInt(2, board.getA_order());
+				pstmt.executeUpdate();
+			}
+			
 		} catch( Exception ex) {
 			System.out.println("SQLException : "+ex.getMessage());
 		} finally {
@@ -157,7 +180,10 @@ private static BoardDAO dao = null;
 	           board.setA_title(rs.getString("a_title"));
 	           board.setA_content(rs.getString("a_content"));
 	           board.setA_count(rs.getInt("a_count"));
-	           
+	           board.setA_date(rs.getString("a_date"));
+	           board.setA_group(rs.getInt("a_group"));
+	           board.setA_order(rs.getInt("a_order"));
+	           board.setA_depth(rs.getInt("a_depth"));
 		    }
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -224,6 +250,8 @@ private static BoardDAO dao = null;
 			}
 		}
 	}
+	
+	
 	
 	
 	

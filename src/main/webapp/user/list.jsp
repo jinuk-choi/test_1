@@ -74,7 +74,7 @@
 	<div>
 		<ul>
 			 <c:choose>
-				<c:when test="${ pagination.prevPage >= 5}">
+				<c:when test="${ pagination.prevPage >= 3}">
 					<li>
 						<a href="user-list.do?page=${pagination.prevPage}">◀</a>		
 					</li>

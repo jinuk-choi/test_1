@@ -23,35 +23,40 @@ CREATE TABLE IF NOT EXISTS `board` (
   `a_title` varchar(255) NOT NULL,
   `a_count` int(10) NOT NULL,
   `a_content` text DEFAULT NULL,
+  `a_group` int(11) DEFAULT NULL,
+  `a_order` int(11) DEFAULT NULL,
+  `a_depth` int(11) DEFAULT NULL,
+  `a_date` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`a_idx`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 aa.board:~23 rows (대략적) 내보내기
+-- 테이블 데이터 aa.board:~25 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `board` DISABLE KEYS */;
-INSERT INTO `board` (`a_idx`, `a_writer`, `a_title`, `a_count`, `a_content`) VALUES
-	(5, 'bbb', 'ddddd', 5, 'ㅇㅇ'),
-	(6, 'cccc', 'eefsf', 5, 'ㅋㅋㅋㅋㅋ'),
-	(7, 'ddddd', 'fefdsf', 5, 'ㅂㅂㅂㅂㅂㅂㅂ'),
-	(8, 'eeeeee', 'dsfaef', 5, 'ㅅㅇㅇㅇ'),
-	(9, 'gggggg', 'dsfaef', 5, 'ㅇㅇㅇ'),
-	(10, 'hnngg', 'dsfaef', 5, 'ㅋㅋㅋ'),
-	(11, 'zcc', 'sdfe', 5, 'ㅌㅌㅌ'),
-	(12, 'dbbb', 'dfsdfs', 5, 'ㅍㅍㅍㅍㅍㅍ'),
-	(13, '홍길동', 'aaa', 0, 'ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ'),
-	(14, '이길동', 'bbb', 2, 'ㄴㄴㄴ'),
-	(15, 'aa', 'abc', 5, 'ㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ'),
-	(16, 'aa', 'abc', 5, 'ㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ'),
-	(17, 'aa', 'abc', 5, 'ㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ'),
-	(18, 'eeeeee', 'dsfaef', 5, 'ㅅㅇㅇㅇ'),
-	(19, 'eeeeee', 'dsfaef', 5, 'ㅅㅇㅇㅇ'),
-	(20, 'eeeeee', 'zcxvxcv', 5, 'ㅅㅇㅇㅇ'),
-	(21, 'zdf', 'dsfaef', 5, 'ㅅㅇㅇㅇ'),
-	(22, 'eeeeee', 'dsfaef', 5, 'dddfsfsd'),
-	(23, 'zdf', 'dfsfc', 5, 'ㅅㅇㅇㅇ'),
-	(24, 'eeeeee', 'dsfaef', 5, 'ㅅㅇㅇㅇ'),
-	(25, 'zdfzds', 'cxzvd', 5, 'ccc'),
-	(42, '수정하기', '수정할래', 0, '수정할래요'),
-	(43, '수정할래2', '수정', 0, '수저저얼');
+INSERT INTO `board` (`a_idx`, `a_writer`, `a_title`, `a_count`, `a_content`, `a_group`, `a_order`, `a_depth`, `a_date`) VALUES
+	(1, '1', '1', 1, '1', 1, 1, 1, '2021-04-23 11:39:53'),
+	(6, 'cccc', 'eefsf', 5, 'ㅋㅋㅋㅋㅋ', 6, 5, 2, '2021-04-23 09:50:09'),
+	(7, 'ddddd', 'fefdsf', 5, 'ㅂㅂㅂㅂㅂㅂㅂ', 6, 2, 2, '2021-04-23 09:50:10'),
+	(8, 'eeeeee', 'dsfaef', 5, 'ㅅㅇㅇㅇ', 6, 1, 2, '2021-04-23 09:50:10'),
+	(9, 'gggggg', 'dsfaef', 5, 'ㅇㅇㅇ', 6, 3, 3, '2021-04-23 09:50:11'),
+	(10, 'hnngg', 'dsfaef', 5, 'ㅋㅋㅋ', 6, 4, 4, '2021-04-23 09:50:11'),
+	(11, 'zcc', 'sdfe', 5, 'ㅌㅌㅌ', 6, NULL, NULL, '2021-04-23 09:50:12'),
+	(12, 'dbbb', 'dfsdfs', 5, 'ㅍㅍㅍㅍㅍㅍ', 6, NULL, NULL, '2021-04-23 09:50:12'),
+	(13, '홍길동', 'aaa', 0, 'ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ', 6, NULL, NULL, '2021-04-23 09:50:14'),
+	(14, '이길동', 'bbb', 2, 'ㄴㄴㄴ', 6, NULL, NULL, '2021-04-23 09:50:13'),
+	(15, 'aa', 'abc', 5, 'ㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ', 6, NULL, NULL, '2021-04-23 09:50:14'),
+	(16, 'aa', 'abc', 5, 'ㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ', 6, NULL, NULL, '2021-04-23 09:50:15'),
+	(17, 'aa', 'abc', 5, 'ㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊ', 6, NULL, NULL, '2021-04-23 09:50:15'),
+	(18, 'eeeeee', 'dsfaef', 5, 'ㅅㅇㅇㅇ', 6, NULL, NULL, '2021-04-23 09:50:18'),
+	(19, 'eeeeee', 'dsfaef', 5, 'ㅅㅇㅇㅇ', 6, NULL, NULL, '2021-04-23 09:50:19'),
+	(20, 'eeeeee', 'zcxvxcv', 5, 'ㅅㅇㅇㅇ', 6, NULL, NULL, '2021-04-23 09:50:19'),
+	(21, 'zdf', 'dsfaef', 5, 'ㅅㅇㅇㅇ', 6, NULL, NULL, '2021-04-23 09:50:20'),
+	(22, 'eeeeee', 'dsfaef', 5, 'dddfsfsd', 6, NULL, NULL, '2021-04-23 09:50:20'),
+	(23, 'zdf', 'dfsfc', 5, 'ㅅㅇㅇㅇ', 6, NULL, NULL, '2021-04-23 09:50:21'),
+	(24, 'eeeeee', 'dsfaef', 5, 'ㅅㅇㅇㅇ', 6, NULL, NULL, '2021-04-23 09:50:22'),
+	(25, 'zdfzds', 'cxzvd', 5, 'ccc', 6, NULL, NULL, '2021-04-23 09:50:22'),
+	(42, '수정하기', '수정할래', 0, '수정할래요', 6, NULL, NULL, '2021-04-23 09:50:23'),
+	(43, '수정할래2', '수정', 0, '수저저얼', 6, NULL, NULL, '2021-04-23 09:50:23'),
+	(44, '가자', '가즈아', 0, '가자', 6, NULL, NULL, '2021-04-23 10:05:51');
 /*!40000 ALTER TABLE `board` ENABLE KEYS */;
 
 -- 테이블 aa.comment 구조 내보내기
@@ -65,67 +70,19 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `a_idx` (`a_idx`)
 ) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 aa.comment:~58 rows (대략적) 내보내기
+-- 테이블 데이터 aa.comment:~10 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
 INSERT INTO `comment` (`b_idx`, `u_idx`, `b_title`, `b_content`, `a_idx`) VALUES
-	(5, '3', '가즈아', NULL, 6),
-	(6, '3', 'ㅎㅇ', '안녕', 6),
+	(6, '3', 'ㅎㅇ', '안녕ㅇㅇ', 6),
 	(8, '4', 'ㅎㅇ', NULL, 7),
-	(27, '3', NULL, NULL, 5),
-	(28, '3', NULL, NULL, 5),
-	(29, '3', NULL, 'ㄱㄱ', 5),
-	(30, '3', NULL, NULL, 5),
-	(31, '4', NULL, '하하', 5),
-	(32, '4', NULL, '하하', 5),
-	(33, '4', NULL, 'ㅗㅗ', 5),
-	(34, '4', NULL, 'ㅇㅇ', 5),
-	(35, '4', NULL, 'ㅇㅇㅇㅇ', 5),
-	(36, '4', NULL, 'ㅇㅇㅇㅇ', 5),
-	(37, '4', NULL, 'ㅇㅇㅇㅇ', 5),
-	(38, '4', NULL, 'ㅇㅇㅇㅇ', 5),
-	(39, '4', NULL, 'ㄴㅇㄹㄴㅇㄹ', 5),
-	(40, '4', NULL, '하하', 5),
-	(41, '4', NULL, 'ㄹㄹㄹ', 5),
-	(42, '4', NULL, 'ㄹㄹㄹ', 5),
-	(43, '4', NULL, 'ㄹㄹㄹ', 5),
 	(44, '4', NULL, 'ㄴㄴ', 18),
 	(45, '4', NULL, 'ㅍㄹㄹ', 18),
-	(46, '4', NULL, 'ㅇㅇ', 5),
-	(47, '4', NULL, 'ㅇㅇㄹㄹ', 5),
-	(48, '4', NULL, 'ㅇㅇㅇㅇ', 5),
-	(49, '4', NULL, 'ㄴㄹㄴㄹ', 5),
-	(50, '4', NULL, 'ㅌㅍ', 5),
-	(51, '4', NULL, 'ㅇㅇ', 5),
-	(52, '4', NULL, 'ㄴㅇㄹ', 5),
-	(53, '4', NULL, 'ㅇㄹㄹ', 5),
-	(54, '4', NULL, 'ㅇㄹㄹ', 5),
-	(55, '4', NULL, 'ㅇㄹㄹ', 5),
-	(56, '4', NULL, 'ㅌㅋㅁㅌㅁ', 5),
-	(57, '4', NULL, '디버깅', 5),
-	(58, '4', NULL, '디버깅23', 5),
-	(59, '4', NULL, '디버깅23', 5),
-	(60, '3', NULL, 'd', 5),
-	(61, '3', NULL, 'df', 5),
-	(62, '3', NULL, 'df', 5),
-	(63, '3', NULL, 'ff', 5),
-	(64, '3', NULL, 'ff', 5),
-	(65, '3', NULL, 'dd', 5),
-	(66, '3', NULL, 'dddddd', 5),
-	(67, '3', NULL, 'gfhhfshfgh', 5),
-	(68, '3', NULL, 'gfhhfshfgh', 5),
-	(69, '3', NULL, 'gfhhfshfgh', 5),
-	(70, '4', NULL, 'ddd', 5),
-	(72, '4', NULL, 'dgsdg', 5),
-	(73, '4', NULL, 'sdfsdf', 5),
-	(74, '4', NULL, 'asdf', 5),
-	(75, '4', NULL, 'gbsdgh', 5),
-	(76, '5', NULL, '강하다', 5),
-	(77, '3', NULL, 'ddddddddddddddddddd', 5),
-	(78, '4', NULL, 'ㅇㅇ', 5),
+	(77, '3', NULL, 'ㅇㅇㅇㅇㅇㅇㅇ', 5),
+	(78, '4', NULL, 'ㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ', 5),
 	(79, '3', NULL, 'sadsaf', 5),
 	(80, '4', NULL, 'sdfdsf', 6),
-	(81, '4', NULL, 'sdf', 6),
-	(82, '4', NULL, 'fdgfdg', 5);
+	(81, '4', NULL, 'ㅎㅎ', 6),
+	(82, '4', NULL, '오어라러', 5);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 
 -- 테이블 aa.user 구조 내보내기

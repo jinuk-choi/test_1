@@ -12,7 +12,7 @@
 	<p> 작성자 : <input type="text" name="id"></p>
 	<p> 제목 : <input type="text" name="title"></p>
 	<p> 내용 : <input type="text" style="width:500px; height:500px;" name="content"></p>
-	<p> <input type="submit" value="작성하기"></p>
+	<p> <input type="submit" value="작성하기" a_group="${board.a_group}" a_order="${board.order}" a_depth="${board.a_depth}"></p>
 </form>
 </body>
 </html>

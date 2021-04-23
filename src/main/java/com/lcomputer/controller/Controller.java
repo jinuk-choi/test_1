@@ -193,9 +193,16 @@ public class Controller extends HttpServlet {
 				board.setA_writer(request.getParameter("id"));
 				board.setA_title(request.getParameter("title"));
 				board.setA_content(request.getParameter("content"));
+				//board.setA_date(request.getParameter("date"));
+				board.setA_group(Integer.parseInt(request.getParameter("a_group")));
+				board.setA_order(Integer.parseInt(request.getParameter("a_order")));
+				board.setA_depth(Integer.parseInt(request.getParameter("a_depth")));
 				
 				boardService = BoardService.getInstance();
 				boardService.insertBoard(board);
+					
+				boardList = boardService.getBoard(page);			
+				request.setAttribute("board", boardList);
 						
 				view = "board/insert-result";
 				break;

@@ -25,7 +25,7 @@
 </head>
 <body>
 	<h2> 게시글 상세보기 </h2>
-		<p> 작성자 : ${board.a_writer } &emsp;&emsp;&emsp;&emsp;&emsp;조회수 : ${board.a_count }</p>
+		<p> 작성자 : ${board.a_writer } &emsp;&emsp;&emsp;&emsp;&emsp;조회수 : ${board.a_count } </p>
 		<br>
 		<p> 제목 : ${board.a_title }</p>
 		<br>
@@ -38,6 +38,12 @@
 			</td>
 			<td style="border:none;">
 				<a href="board-delete.do?a_idx=${board.a_idx}" style ="width:70%;font-weight:700;background-color:red;color:#fff;">삭제</a>
+			</td>
+			<td style="border:none;">
+				 <a href="board-insert.do?a_group=${board.a_group}&a_order=${board.a_order}&a_depth=${board.a_depth}" style="width:80%;font-weight:700;background-color:#818181;color:#fff;" >답글쓰기</a>
+			</td>
+			<td style="border:none;">
+				 <a href="board-list.do" style="width:80%;font-weight:700;background-color:#818181;color:#fff;" >목록보기</a>
 			</td>
 		</tr>
 	</table>
@@ -58,7 +64,7 @@
 		</div>
 		<div class="myFlex" style="display: none;">
 			<div>작성자 : ${comment.user.u_name}</div>&emsp;&emsp;
-			<div>내용 : <textarea rows="1" cols="50"  id="editcon">${comment.b_content}</textarea></div>&emsp;&emsp;
+			<div>내용 : <textarea rows="1" cols="50"  class="editcon">${comment.b_content}</textarea></div>&emsp;&emsp;
 			<div><button type="button" class="btnEditForm" b_idx="${comment.b_idx}" >등록</button></div>
 			<div><a href="">취소</a></div>
 		</div>
@@ -93,7 +99,7 @@ $(document).on('click', '.btnUpdateForm', function () {
 });
 
 $(document).on('click', '.btnEditForm', function () {
-	let editcon = $('#editcon').val();
+	let editcon = $(this).parent().prev().find('.editcon').val();
 	let b_idx = $(this).attr('b_idx');
 	let a_idx = '${board.a_idx}';
 

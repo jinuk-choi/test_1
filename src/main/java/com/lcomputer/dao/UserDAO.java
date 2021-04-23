@@ -27,7 +27,7 @@ public class UserDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<User> list = null;
-		int pageNum = (page-1)*3;
+		int pageNum = (page-1)*10;
 	
 		try {
 			conn = DBConnection.getConnection();
@@ -37,7 +37,7 @@ public class UserDAO {
 					.append("				ta.*\n")
 					.append("FROM 			user ta,\n")
 					.append("				(SELECT @rownum := (SELECT	COUNT(*)-?+1 FROM user ta)) tb\n")
-					.append("LIMIT			?, 3\n")
+					.append("LIMIT			?, 10\n")
 					.toString();
 	       	pstmt = conn.prepareStatement(query);
 	       	pstmt.setInt(1, pageNum);
