@@ -11,13 +11,21 @@ public class Pagination {
 	int nextPage;     // pagination의 다음 목록
 	public static final int pageUnit=3;  // 한번에 불러 올 pagination 수
 	public static final int perPage=10;   // 한번에 불러 올 userCount 수
+	Search search;
 	
 	public Pagination() {
 		
 	}
-	public Pagination(int page, int count) {		
+	
+	public Pagination(int page, int count) {
+		this(page, count, null);
+	}
+	
+	public Pagination(int page, int count, Search search) {
 		this.page = page;
 		this.count = count;
+		this.search = search;
+		this.pageNum = (page-1)*perPage;
 		
 		startPage =((page-1)/pageUnit)*pageUnit+1;
 		lastPage = (int)Math.ceil(count / (float)perPage);
@@ -25,7 +33,6 @@ public class Pagination {
 		endPage = endPage < lastPage ? endPage : lastPage;
 		prevPage=(startPage-1);
 		nextPage=(startPage+pageUnit);
-		
 	}
 	
 	public int getCount() {
@@ -81,6 +88,12 @@ public class Pagination {
 	}
 	public void setNextPage(int nextPage) {
 		this.nextPage = nextPage;
+	}
+	public Search getSearch() {
+		return search;
+	}
+	public void setSearch(Search search) {
+		this.search = search;
 	}
 	
 }

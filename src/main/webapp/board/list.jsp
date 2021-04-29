@@ -27,7 +27,7 @@
 	
 	table tr td, table tr th {
 		border:1px solid #818181;
-		width:200px;
+		width:300px;
 		text-align:center;
 	}
 	
@@ -61,6 +61,21 @@
 		margin:40px auto;
 	}
 	
+	.tdAlign {
+		text-align:left; 
+		padding-left:10px;
+	}
+	
+	#box1 {
+		text-align: left;
+		padding-left:200px;
+	}
+	
+	#search {
+		display: inline-block;
+		text-align: center;
+	}
+	
 
 </style>
 </head>
@@ -81,7 +96,16 @@
 	<c:forEach items="${list}" var="board" varStatus="status">
 		<tr>	 
 			<td>${board.rownum}</td>
-			<td><a href="board-detail.do?a_idx=${board.a_idx}">${board.a_title}</a></td>
+			<td class="tdAlign"><c:if test="${board.a_depth > 1 }">
+						<c:forEach begin="2" end="${board.a_depth}">
+							&nbsp;&nbsp;
+						</c:forEach>
+						<c:forEach begin="2" end="${board.a_depth}">
+							┕
+						</c:forEach>
+					</c:if>
+				<a href="board-detail.do?a_idx=${board.a_idx}">${board.a_title}</a>
+			</td>
 			<td>${board.a_writer}</td>
 			<td>${board.a_date}</td>
 			<td>${board.a_count}</td>
@@ -122,9 +146,22 @@
 		</c:choose> 
 	</ul>
 </div>
-<div>
-<h2><a href="board-insert.do">게시글 작성하기</a></h2>
+	<div id="box1"><a href="board-insert.do?a_group=0&a_order=0&a_depth=0">게시글 작성하기</a>
 </div>
-
+<p></p>
+<div id="search">
+        <form action="board-list.do" name="search" method="get">
+        	<input type="hidden" name="page" value="${pagination.page}">
+            <select name="type">
+            	<option value="0" selected>- 선택- </option>
+                <option value="1">제목</option>
+                <option value="2">내용</option>
+                <option value="3">제목+내용</option>
+                <option value="4">글쓴이</option>
+            </select>
+            <input type="text" size="20" name="keyword"/>&nbsp;
+            <input type="submit" value="검색"/>
+        </form>    
+</div>
 </body>
 </html>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.lcomputer.dao.BoardDAO;
 import com.lcomputer.vo.Board;
+import com.lcomputer.vo.Pagination;
 
 
 public class BoardService {
@@ -23,8 +24,8 @@ public class BoardService {
 		return service;
 	}
 
-	public ArrayList<Board> getBoard(int page) {
-		return dao.getBoard(page);
+	public ArrayList<Board> getBoard(Pagination pagination) {
+		return dao.getBoard(pagination);
 	}
 	
 	public int getCount() {

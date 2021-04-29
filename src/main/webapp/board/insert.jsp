@@ -9,10 +9,13 @@
 <body>
 <h2> 게시글 작성 </h2>
 <form action="board-insert-process.do" name="board" method="post">
+	<input type="hidden" name="a_group" value="${board.a_group}">
+	<input type="hidden" name="a_order" value="${board.a_order}">
+	<input type="hidden" name="a_depth" value="${board.a_depth}">
 	<p> 작성자 : <input type="text" name="id"></p>
 	<p> 제목 : <input type="text" name="title"></p>
 	<p> 내용 : <input type="text" style="width:500px; height:500px;" name="content"></p>
-	<p> <input type="submit" value="작성하기" a_group="${board.a_group}" a_order="${board.order}" a_depth="${board.a_depth}"></p>
+	<p> <input type="submit" value="작성하기"></p>
 </form>
 </body>
 </html>

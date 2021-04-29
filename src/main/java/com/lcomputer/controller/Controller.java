@@ -1,6 +1,7 @@
 package com.lcomputer.controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import com.lcomputer.service.UserService;
 import com.lcomputer.vo.Board;
 import com.lcomputer.vo.Comment;
 import com.lcomputer.vo.Pagination;
+import com.lcomputer.vo.Search;
 import com.lcomputer.vo.User;
 
 @WebServlet("*.do")
@@ -83,6 +85,10 @@ public class Controller extends HttpServlet {
 		Board board = null;
 		Comment comment = null;
 		int bIdx = 0;
+		Search search = null;
+		int type = 0;
+		String keyword = null;
+		String strType = null;
 		
 		
 		
@@ -170,10 +176,20 @@ public class Controller extends HttpServlet {
 					page = Integer.parseInt(reqPage);
 					
 				}
+				
+				strType = request.getParameter("type");
+				if (strType != null) {
+					type = Integer.parseInt(request.getParameter("type"));
+					keyword = request.getParameter("keyword");
+					search = new Search(type, keyword);
+				}
 				boardService = BoardService.getInstance();
-				boardList = boardService.getBoard(page);
-				count = boardService.getCount();	
-				pagination = new Pagination(page, count);
+				count = boardService.getCount();
+				pagination = new Pagination(page, count, search);
+				
+				boardList = boardService.getBoard(pagination);
+				
+				
 												
 			
 				request.setAttribute("list", boardList);
@@ -185,6 +201,14 @@ public class Controller extends HttpServlet {
 				
 				
 			case "/board-insert.do":
+				board = new Board(); 
+				board.setA_group(Integer.parseInt(request.getParameter("a_group")));
+				board.setA_order(Integer.parseInt(request.getParameter("a_order")));
+				board.setA_depth(Integer.parseInt(request.getParameter("a_depth")));
+		
+				
+				request.setAttribute("board", board);
+				
 				view = "board/insert";
 				break;
 				
@@ -193,15 +217,14 @@ public class Controller extends HttpServlet {
 				board.setA_writer(request.getParameter("id"));
 				board.setA_title(request.getParameter("title"));
 				board.setA_content(request.getParameter("content"));
-				//board.setA_date(request.getParameter("date"));
 				board.setA_group(Integer.parseInt(request.getParameter("a_group")));
 				board.setA_order(Integer.parseInt(request.getParameter("a_order")));
-				board.setA_depth(Integer.parseInt(request.getParameter("a_depth")));
+				board.setA_depth(Integer.parseInt(request.getParameter("a_depth"))+1);
 				
 				boardService = BoardService.getInstance();
 				boardService.insertBoard(board);
 					
-				boardList = boardService.getBoard(page);			
+				boardList = boardService.getBoard(pagination);			
 				request.setAttribute("board", boardList);
 						
 				view = "board/insert-result";

@@ -4,9 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import com.lcomputer.database.DBConnection;
 import com.lcomputer.vo.Board;
+import com.lcomputer.vo.Pagination;
+import com.lcomputer.vo.Search;
 
 
 public class BoardDAO {
@@ -26,7 +30,112 @@ private static BoardDAO dao = null;
 	
 	
 
-	public ArrayList<Board> getBoard(int page) {
+	
+	
+	public ArrayList<Board> getBoard(Pagination pagination) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Board> list = null;
+		//int page = pagination.getPage();
+		int pageNum = pagination.getPageNum();
+		
+		int type = Search.NONE;
+		String keyword = null;
+		List<String> columns = null;
+		
+		Search search = pagination.getSearch();
+		String where = "";
+		if (search != null) {		// 입력된 검색어가 있다면
+			type = search.getType();
+			keyword = search.getKeyword();
+			
+			columns = new ArrayList<String>();
+			
+			switch (type) {
+				case Search.TITLE:
+					columns.add("a_title");
+					break;
+				case Search.WRITER:
+					columns.add("a_writer");
+					break;
+				case Search.CONTENT:
+					columns.add("a_content");
+					break;
+				case Search.TITLE_CONTENT:
+					columns.add("a_content");
+					columns.add("a_title");
+					break;
+				default:
+					break;
+			}
+			
+			where = "WHERE ";
+			for (int i=0; i<columns.size(); i++) {				
+				where += columns + " LIKE ? ";
+				
+				if (i < columns.size()-1)
+					where += " OR ";
+			}
+		}
+		
+		try {
+			conn = DBConnection.getConnection();
+			//String query = "select * from board limit 3";
+			String query = new StringBuilder()
+					.append("SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,\n")
+					.append("				ta.*\n")
+					.append("FROM 			board ta,\n")
+					.append("				(SELECT @rownum := (SELECT	COUNT(*)-?+1 FROM board ta)) tb\n")
+					.append(where)
+					.append("ORDER BY		a_group DESC, a_order DESC ")
+					.append("LIMIT			?, 10\n")
+					.toString();
+	       	pstmt = conn.prepareStatement(query); 
+	       	
+	       	pstmt.setInt(1, pageNum);
+	       	int index = 2;
+	     /*  	for (String column : columns) {
+	       		pstmt.setString(index, "%"+keyword+"%");
+	       		index++;
+	       	} */		       	
+	       	pstmt.setInt(index, pageNum);
+
+	        rs = pstmt.executeQuery();
+	        list = new ArrayList<Board>();
+
+	        while(rs.next()){     
+	        	Board board = new Board();
+	        	board.setRownum(rs.getInt("ROWNUM"));
+      	       	board.setA_idx(rs.getInt("a_idx"));
+       	        board.setA_writer(rs.getString("a_writer"));
+       	       	board.setA_title(rs.getString("a_title"));
+       	       	board.setA_content(rs.getString("a_content"));
+       	       	board.setA_count(rs.getInt("a_count"));
+       	       	board.setA_date(rs.getString("a_date"));
+       	       	board.setA_group(rs.getInt("a_group"));
+       	       	board.setA_order(rs.getInt("a_order"));
+       	       	board.setA_depth(rs.getInt("a_depth"));
+       	       	
+       	       	list.add(board);
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} return list;
+	} 
+	
+		
+		
+	
+/*	public ArrayList<Board> getBoard(int page) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -45,6 +154,7 @@ private static BoardDAO dao = null;
 					.append("				ta.*\n")
 					.append("FROM 			board ta,\n")
 					.append("				(SELECT @rownum := (SELECT	COUNT(*)-?+1 FROM board ta)) tb\n")
+					.append("ORDER BY		a_group DESC, a_order DESC ")
 					.append("LIMIT			?, 10\n")
 					.toString();
 	       	pstmt = conn.prepareStatement(query); 
@@ -80,7 +190,12 @@ private static BoardDAO dao = null;
 			}
 		}
 	 return list;
-	}
+	}    */
+	
+	
+	
+	
+	
 	
 	public void insertBoard(Board board) {
 		Connection conn = null;
@@ -88,17 +203,16 @@ private static BoardDAO dao = null;
 			
 		try {
 			conn = DBConnection.getConnection();
-			String sql = "insert into board(a_idx,a_writer,a_title,a_count,a_content,a_date,a_group,a_order,a_depth) values(?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into board(a_idx,a_writer,a_title,a_count,a_content,a_group,a_order,a_depth) values(?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board.getA_idx());
 			pstmt.setString(2, board.getA_writer());
 			pstmt.setString(3, board.getA_title());
 			pstmt.setInt(4, board.getA_count());
 			pstmt.setString(5, board.getA_content());
-			pstmt.setString(6, board.getA_date());
-			pstmt.setInt(7, board.getA_group());
-			pstmt.setInt(8, board.getA_order());
-			pstmt.setInt(9, board.getA_depth());
+			pstmt.setInt(6, board.getA_group());
+			pstmt.setInt(7, board.getA_order());
+			pstmt.setInt(8, board.getA_depth());
 			pstmt.executeUpdate();
 			pstmt.close();
 			if (board.getA_group() == 0) {	// 원글
@@ -106,14 +220,14 @@ private static BoardDAO dao = null;
 				sql = "update board set a_group = last_insert_id() where a_idx = last_insert_id()";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.executeUpdate();
-			} else {						// 답글
-				// 원글의 a_group 을 auto_increment 된 a_idx 로 수정
+			} else  {						// 답글
+				
 				sql = "update board set a_order = a_order + 1 where a_group = ? and a_order >= ? and a_idx <> last_insert_id()";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, board.getA_group());
 				pstmt.setInt(2, board.getA_order());
 				pstmt.executeUpdate();
-			}
+			} 
 			
 		} catch( Exception ex) {
 			System.out.println("SQLException : "+ex.getMessage());
