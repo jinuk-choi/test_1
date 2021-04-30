@@ -115,7 +115,7 @@
 <div>
 	<ul>
 		 <c:choose>
-			<c:when test="${ pagination.prevPage >= 3}">
+			<c:when test="${ pagination.prevPage >= 5}">
 				<li>
 					<a href="board-list.do?page=${pagination.prevPage}">◀</a>		
 				</li>
@@ -132,7 +132,7 @@
 					</c:when>
 					<c:when test="${ pagination.page != i }">
 						<li>
-							<a href="board-list.do?page=${i}">${i}</a>
+							<a href="board-list.do?page=${i}&type=${search.type}&keyword=${search.keyword}">${i}</a>
 						</li>
 					</c:when>
 				</c:choose>

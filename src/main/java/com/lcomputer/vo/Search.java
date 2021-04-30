@@ -12,7 +12,7 @@ public class Search {
 	
 	public Search() {
 		this(NONE, "");
-	}
+	} 
 	
 	public Search(int type, String keyword) {
 		this.type = type;

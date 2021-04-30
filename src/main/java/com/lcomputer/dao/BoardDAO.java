@@ -46,7 +46,7 @@ private static BoardDAO dao = null;
 		
 		Search search = pagination.getSearch();
 		String where = "";
-		if (search != null) {		// 입력된 검색어가 있다면
+		if (search != null ) {		// 입력된 검색어가 있다면
 			type = search.getType();
 			keyword = search.getKeyword();
 			
@@ -72,7 +72,7 @@ private static BoardDAO dao = null;
 			
 			where = "WHERE ";
 			for (int i=0; i<columns.size(); i++) {				
-				where += columns + " LIKE ? ";
+				where += columns.get(i) + " LIKE ? ";
 				
 				if (i < columns.size()-1)
 					where += " OR ";
@@ -89,16 +89,18 @@ private static BoardDAO dao = null;
 					.append("				(SELECT @rownum := (SELECT	COUNT(*)-?+1 FROM board ta)) tb\n")
 					.append(where)
 					.append("ORDER BY		a_group DESC, a_order DESC ")
-					.append("LIMIT			?, 10\n")
+					.append("LIMIT			?, 3\n")
 					.toString();
 	       	pstmt = conn.prepareStatement(query); 
 	       	
 	       	pstmt.setInt(1, pageNum);
 	       	int index = 2;
-	     /*  	for (String column : columns) {
-	       		pstmt.setString(index, "%"+keyword+"%");
-	       		index++;
-	       	} */		       	
+		       	if (search != null) {
+			      	for (String column : columns) {
+			       		pstmt.setString(index, "%"+keyword+"%");
+			       		index++; 
+			       	}
+		       	} 		       	
 	       	pstmt.setInt(index, pageNum);
 
 	        rs = pstmt.executeQuery();
@@ -135,63 +137,7 @@ private static BoardDAO dao = null;
 		
 		
 	
-/*	public ArrayList<Board> getBoard(int page) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<Board> list = null;
-		int pageNum = (page-1)*10;
-		
 
-
-		
-	
-		try {
-			conn = DBConnection.getConnection();
-			//String query = "select * from board limit 3";
-			String query = new StringBuilder()
-					.append("SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,\n")
-					.append("				ta.*\n")
-					.append("FROM 			board ta,\n")
-					.append("				(SELECT @rownum := (SELECT	COUNT(*)-?+1 FROM board ta)) tb\n")
-					.append("ORDER BY		a_group DESC, a_order DESC ")
-					.append("LIMIT			?, 10\n")
-					.toString();
-	       	pstmt = conn.prepareStatement(query); 
-	       	pstmt.setInt(1, pageNum);
-	       	pstmt.setInt(2, pageNum);
-	        rs = pstmt.executeQuery();
-	        list = new ArrayList<Board>();
-
-	        while(rs.next()){     
-	        	Board board = new Board();
-	        	board.setRownum(rs.getInt("ROWNUM"));
-      	       	board.setA_idx(rs.getInt("a_idx"));
-       	        board.setA_writer(rs.getString("a_writer"));
-       	       	board.setA_title(rs.getString("a_title"));
-       	       	board.setA_content(rs.getString("a_content"));
-       	       	board.setA_count(rs.getInt("a_count"));
-       	       	board.setA_date(rs.getString("a_date"));
-       	       	board.setA_group(rs.getInt("a_group"));
-       	       	board.setA_order(rs.getInt("a_order"));
-       	       	board.setA_depth(rs.getInt("a_depth"));
-       	       	
-       	       	list.add(board);
-	        }
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) rs.close();
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	 return list;
-	}    */
-	
 	
 	
 	
@@ -242,16 +188,67 @@ private static BoardDAO dao = null;
 	}
 	
 	
-	public int getCount() {
+	public int getCount(Search search) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int count = 0;
+		int count = 0;	
+		
+		
+		int type = Search.NONE;
+		String keyword = null;
+		List<String> columns = null;
+		
+		String where = "";
+		if (search != null) {		// 입력된 검색어가 있다면
+			type = search.getType();
+			keyword = search.getKeyword();
+			
+			columns = new ArrayList<String>();
+			
+			switch (type) {
+				case Search.TITLE:
+					columns.add("a_title");
+					break;
+				case Search.WRITER:
+					columns.add("a_writer");
+					break;
+				case Search.CONTENT:
+					columns.add("a_content");
+					break;
+				case Search.TITLE_CONTENT:
+					columns.add("a_content");
+					columns.add("a_title");
+					break;
+				default:
+					break;
+			}
+			
+			where = "WHERE ";
+			for (int i=0; i<columns.size(); i++) {				
+				where += columns.get(i) + " LIKE ? ";
+				
+				if (i < columns.size()-1)
+					where += " OR ";
+			}
+		}
 
 		try {
 			conn = DBConnection.getConnection();
-			String query = "SELECT COUNT(*) count FROM board ";
+			String query =  new StringBuilder()
+				        .append("SELECT COUNT(*) count FROM board  ")
+				        .append(where)
+				        .toString();
 	       	pstmt = conn.prepareStatement(query);
+	    
+	       	int index = 1;
+		       	if (search != null) {
+			      	for (String column : columns) {
+			       		pstmt.setString(index, "%"+keyword+"%");
+			       		index++; 
+			       	}
+		       	} 		       	
+	        	
 	        rs = pstmt.executeQuery();
 	        
 	        while(rs.next()){     

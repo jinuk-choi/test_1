@@ -178,16 +178,17 @@ public class Controller extends HttpServlet {
 				}
 				
 				strType = request.getParameter("type");
-				if (strType != null) {
+				if (strType != null && !strType.equals("")) {
 					type = Integer.parseInt(request.getParameter("type"));
 					keyword = request.getParameter("keyword");
 					search = new Search(type, keyword);
 				}
-				boardService = BoardService.getInstance();
-				count = boardService.getCount();
+				boardService = BoardService.getInstance();				
+				count = boardService.getCount(search);
 				pagination = new Pagination(page, count, search);
-				
 				boardList = boardService.getBoard(pagination);
+				
+				
 				
 				
 												
