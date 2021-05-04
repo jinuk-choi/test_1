@@ -2,6 +2,7 @@ package com.lcomputer.vo;
 
 public class Pagination {
 	int count;       // user테이블에 등록 된 총 user 수
+	int cocount;	// comment 수
 	int page;           // 현재 패이지번호
 	int pageNum;          // userCount / page = 화면에 나타 낼 user index번호
 	int startPage;     //﻿ pagination의 시작(ex,1,6,11)
@@ -40,6 +41,13 @@ public class Pagination {
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public int getCocount() {
+		return cocount;
+	}
+
+	public void setCocount(int cocount) {
+		this.cocount = cocount;
 	}
 	public int getPage() {
 		return page;

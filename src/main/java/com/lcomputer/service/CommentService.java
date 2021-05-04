@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import com.lcomputer.dao.CommentDAO;
 import com.lcomputer.vo.Board;
 import com.lcomputer.vo.Comment;
+import com.lcomputer.vo.Pagination;
+import com.lcomputer.vo.Search;
 
 public class CommentService {
 	
@@ -22,8 +24,8 @@ public class CommentService {
 		return service;
 	}
 	
-	public ArrayList<Comment> getComment(int a_idx) {
-		return dao.getComment(a_idx);
+	public ArrayList<Comment> getComment(Board board) {
+		return dao.getComment(board);
 	}
 	
 	public void insertComment(Comment comment) {
@@ -40,6 +42,10 @@ public class CommentService {
 	
 	public void editComment(Comment comment) {
 		dao.editComment(comment);
+	}
+	
+	public int getCommentCount(Board board) {
+		return dao.getCommentCount(board);
 	}
 
 	

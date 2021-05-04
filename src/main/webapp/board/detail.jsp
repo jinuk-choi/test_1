@@ -20,6 +20,23 @@
 	.myFlex {
 		display: flex;
 	}
+	
+	ul {
+		width:600px;
+		height:50px;
+		margin:10px auto;
+	}	
+	
+	li {
+		list-style:none;
+		width:50px;
+		line-height:50px;
+		border:1px solid #ededed;
+		float:left;
+		text-align:left;
+		margin:0 5px;
+		border-radius:5px;
+	}
 </style>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
@@ -54,6 +71,7 @@
 	<p> 내용 : <input type="text" style="width:500px; height:50px;" name="content" id="content" >&emsp;<input type="button" value="작성하기" id="btnReg"></p>
 </div>
 <h2> 댓글 보기 </h2>
+	<p>전체 댓글 수 : ${pagination.count }</p>
 <div id="commentList">
 	<c:forEach items="${list}" var="comment" varStatus="status">
 		<div class="myFlex">
@@ -69,6 +87,40 @@
 			<div><a href="">취소</a></div>
 		</div>
 	</c:forEach>
+</div>
+<div>
+	<ul>
+		 <c:choose>
+			<c:when test="${ pagination.prevPage >= 5}">
+				<li>
+					<a href="board-detail.do?page=${pagination.prevPage}&a_idx=${board.a_idx}">◀</a>		
+				</li>
+			</c:when>
+		</c:choose> 
+		<c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+			
+				<c:choose>
+					<c:when test="${ pagination.page == i }">
+						
+						<li style="background-color:#ededed;">
+							<span>${i}</span>
+						</li>
+					</c:when>
+					<c:when test="${ pagination.page != i }">
+						<li>
+							<a class="page">${i}</a>
+						</li>
+					</c:when>
+				</c:choose>
+		</c:forEach>
+		 <c:choose>
+			<c:when test="${ pagination.nextPage <= pagination.lastPage }">
+				<li style="">
+					<a href="board-detail.do?page=${pagination.nextPage}&a_idx=${board.a_idx}">▶</a>
+				</li>
+			</c:when>	
+		</c:choose> 
+	</ul>
 </div>
 
 <script>
@@ -129,6 +181,24 @@ $(document).on('click', '.btnDeletForm', function () {
 		 url: "/lcomputerstudy/aj-comment-delete.do",
 		 data: { 	
 			 b_idx: b_idx,
+			 a_idx: a_idx
+
+		 }
+	})
+	.done(function( data ) {
+	 	 console.log(data);
+	 	 $('#commentList').html(data);
+	});
+});
+
+$(document).on('click', '.page', function () {
+	let a_idx = $(this).attr('a_idx');
+	let i = $(this).attr('i');
+	
+	$.ajax({
+		 method: "GET",
+		 url: "/lcomputerstudy/detail.do",
+		 data: { 	
 			 a_idx: a_idx
 
 		 }

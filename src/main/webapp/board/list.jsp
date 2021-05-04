@@ -132,7 +132,7 @@
 					</c:when>
 					<c:when test="${ pagination.page != i }">
 						<li>
-							<a href="board-list.do?page=${i}&type=${search.type}&keyword=${search.keyword}">${i}</a>
+							<a href="board-list.do?page=${i}&type=${pagination.search.type}&keyword=${pagination.search.keyword}">${i}</a>
 						</li>
 					</c:when>
 				</c:choose>

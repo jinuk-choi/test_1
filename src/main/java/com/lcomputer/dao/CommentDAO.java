@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import com.lcomputer.database.DBConnection;
 import com.lcomputer.vo.Board;
 import com.lcomputer.vo.Comment;
+import com.lcomputer.vo.Pagination;
+import com.lcomputer.vo.Search;
 import com.lcomputer.vo.User;
 
 public class CommentDAO {
@@ -27,26 +29,29 @@ private static CommentDAO dao = null;
 	}
 	
 	
-	public ArrayList<Comment> getComment(int a_idx) {
+	public ArrayList<Comment> getComment(Board board) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<Comment> list = null;
-		
+		Pagination pagination = board.getPagination();
+		int pageNum = pagination.getPageNum();
 		
 		try {
 			conn = DBConnection.getConnection();
 			String query = new StringBuilder()
-					.append("SELECT ta.*, tb.u_name, tb.u_id FROM comment ta LEFT JOIN user tb ON ta.u_idx = tb.u_idx WHERE a_idx=?")
+					.append("SELECT ta.*, tb.u_name, tb.u_id FROM comment ta LEFT JOIN user tb ON ta.u_idx = tb.u_idx WHERE a_idx=? ")
+					.append("LIMIT ?,3")
 					.toString();
 	       	pstmt = conn.prepareStatement(query); 
-	       	pstmt.setInt(1,a_idx);
+	       	pstmt.setInt(1, board.getA_idx());
+	       	pstmt.setInt(2, pageNum);
 	       	rs = pstmt.executeQuery();
 	        list = new ArrayList<Comment>();
 	        
 	        while(rs.next()){     
 	        	Comment comment = new Comment();
-	        	//comment.setRownum(rs.getInt("ROWNUM"));
+	        	comment.setA_idx(rs.getInt("a_idx"));
       	       	comment.setB_idx(rs.getInt("b_idx"));
        	        comment.setU_idx(rs.getInt("u_idx"));
        	       	comment.setB_content(rs.getString("b_content"));
@@ -189,11 +194,38 @@ private static CommentDAO dao = null;
 		}
 	}
 	
+	public int getCommentCount(Board board) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;	
+		try {
+			conn = DBConnection.getConnection();
+			String query =  new StringBuilder()
+				        .append("SELECT COUNT(*) count FROM comment WHERE a_idx = ?  ")				     
+				        .toString();
+	       	pstmt = conn.prepareStatement(query);	
+	       	pstmt.setInt(1, board.getA_idx() );
+	        rs = pstmt.executeQuery();
+	        
+	        while(rs.next()){     
+	        	count = rs.getInt("count");
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
 
-
-
-
-
+	}
 }
+	
 
 

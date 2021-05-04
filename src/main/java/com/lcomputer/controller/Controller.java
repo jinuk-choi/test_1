@@ -232,15 +232,29 @@ public class Controller extends HttpServlet {
 				break;
 				
 			case "/board-detail.do":
+				reqPage = request.getParameter("page");
+				if (reqPage != null) { 
+					page = Integer.parseInt(reqPage);
+					
+				}
+				
+				
 				aIdx = Integer.parseInt(request.getParameter("a_idx"));
 				boardService = BoardService.getInstance();
 				board = boardService.getBoardById(aIdx);
 				
+				
+				
+			
 				commentService = CommentService.getInstance();
-				commentList = commentService.getComment(aIdx);
+				count = commentService.getCommentCount(board);
+				pagination = new Pagination(page, count);
+				board.setPagination(pagination);
+				commentList = commentService.getComment(board);
 				
 				request.setAttribute("board", board);
 				request.setAttribute("list", commentList);
+				request.setAttribute("pagination", pagination);		
 				view = "board/detail";
 				break;
 			
@@ -282,6 +296,31 @@ public class Controller extends HttpServlet {
 				view = "board/delete";
 				break;
 				
+		/*	case "/comment-list.do":
+				reqPage = request.getParameter("page");
+				if (reqPage != null) { 
+					page = Integer.parseInt(reqPage);
+					
+				}
+				
+				
+				commentService = CommentService.getInstance();				
+				count = commentService.getCommentCount();
+				pagination = new Pagination(page, count);
+				commentList = commentService.getComment(pagination);
+				
+				
+				
+				
+												
+			
+				request.setAttribute("list", commentList);
+				request.setAttribute("pagination", pagination);							
+				
+				
+				view = "board/detail";
+				break;  */
+				
 			/*case "/comment-insert.do":
 				comment = new Comment();
 				comment.setU_idx(Integer.parseInt(request.getParameter("id")));
@@ -301,8 +340,16 @@ public class Controller extends HttpServlet {
 				commentService = CommentService.getInstance();
 				commentService.insertComment(comment);
 				
+				board = new Board();
+				board.setA_idx(comment.getA_idx());
+				
 				commentService = CommentService.getInstance();
-				commentList = commentService.getComment(comment.getA_idx());
+				count = commentService.getCommentCount(board);
+				pagination = new Pagination(page, count);
+				board.setPagination(pagination);
+				commentList = commentService.getComment(board);
+				
+				
 				
 				request.setAttribute("list", commentList);
 				view = "board/comment-list";
@@ -313,11 +360,20 @@ public class Controller extends HttpServlet {
 				//comment.setU_idx(Integer.parseInt(request.getParameter("id")));
 				comment.setB_content(request.getParameter("editcon"));
 				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
-				comment.setB_idx(Integer.parseInt(request.getParameter("b_idx")));
-								
+				comment.setB_idx(Integer.parseInt(request.getParameter("b_idx")));				
 				commentService = CommentService.getInstance();
 				commentService.editComment(comment);
-				commentList = commentService.getComment(comment.getA_idx());
+				
+				board = new Board();
+				board.setA_idx(comment.getA_idx());
+				
+				commentService = CommentService.getInstance();
+				count = commentService.getCommentCount(board);
+				pagination = new Pagination(page, count);
+				board.setPagination(pagination);
+				
+				
+				commentList = commentService.getComment(board);
 				request.setAttribute("list", commentList);
 				
 				view = "board/comment-list";
@@ -331,10 +387,17 @@ public class Controller extends HttpServlet {
 				comment = new Comment();
 				comment.setB_idx(Integer.parseInt(request.getParameter("b_idx")));
 				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
-				
 				commentService = CommentService.getInstance();
 				commentService.deleteComment(comment);
-				commentList = commentService.getComment(comment.getA_idx());
+				
+				board = new Board();
+				board.setA_idx(comment.getA_idx());
+				
+				commentService = CommentService.getInstance();
+				count = commentService.getCommentCount(board);
+				pagination = new Pagination(page, count);
+				board.setPagination(pagination);
+				commentList = commentService.getComment(board);
 				request.setAttribute("list", commentList);
 						
 				view = "board/comment-list";

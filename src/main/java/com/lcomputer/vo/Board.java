@@ -12,6 +12,7 @@ public class Board {
 	private int a_group;
 	private int a_order;
 	private int a_depth;
+	private Pagination pagination;
 	
 	
 	
@@ -74,6 +75,12 @@ public class Board {
 	}
 	public void setRownum(int rownum) {
 		this.rownum = rownum;
+	}
+	public Pagination getPagination() {
+		return pagination;
+	}
+	public void setPagination(Pagination pagination) {
+		this.pagination = pagination;
 	}
 	
 
