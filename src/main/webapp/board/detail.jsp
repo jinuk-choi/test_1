@@ -88,10 +88,10 @@
 		</div>
 	</c:forEach>
 </div>
-<div>
+<div id="commentListPage">
 	<ul>
 		 <c:choose>
-			<c:when test="${ pagination.prevPage >= 5}">
+			<c:when test="${ pagination.prevPage >= 3}">
 				<li>
 					<a href="board-detail.do?page=${pagination.prevPage}&a_idx=${board.a_idx}">◀</a>		
 				</li>
@@ -192,20 +192,22 @@ $(document).on('click', '.btnDeletForm', function () {
 });
 
 $(document).on('click', '.page', function () {
-	let a_idx = $(this).attr('a_idx');
-	let i = $(this).attr('i');
+	let a_idx = '${board.a_idx}';
+	
+
 	
 	$.ajax({
 		 method: "GET",
-		 url: "/lcomputerstudy/detail.do",
+		 url: "/lcomputerstudy/aj-comment-list.do",
 		 data: { 	
 			 a_idx: a_idx
+			
 
 		 }
 	})
 	.done(function( data ) {
 	 	 console.log(data);
-	 	 $('#commentList').html(data);
+	 	 $('#commentListPage').html(data);
 	});
 });
 	

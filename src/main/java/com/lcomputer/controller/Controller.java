@@ -296,30 +296,31 @@ public class Controller extends HttpServlet {
 				view = "board/delete";
 				break;
 				
-		/*	case "/comment-list.do":
+			case "/aj-comment-list.do":
 				reqPage = request.getParameter("page");
 				if (reqPage != null) { 
 					page = Integer.parseInt(reqPage);
 					
 				}
 				
-				
-				commentService = CommentService.getInstance();				
-				count = commentService.getCommentCount();
-				pagination = new Pagination(page, count);
-				commentList = commentService.getComment(pagination);
+				aIdx = Integer.parseInt(request.getParameter("a_idx"));
+				boardService = BoardService.getInstance();
+				board = boardService.getBoardById(aIdx);
 				
 				
 				
-				
-												
 			
+				commentService = CommentService.getInstance();
+				count = commentService.getCommentCount(board);
+				pagination = new Pagination(page, count);
+				board.setPagination(pagination);
+				commentList = commentService.getComment(board);
+				
+				request.setAttribute("board", board);
 				request.setAttribute("list", commentList);
-				request.setAttribute("pagination", pagination);							
-				
-				
-				view = "board/detail";
-				break;  */
+				request.setAttribute("pagination", pagination);		
+				view = "comment/list-page";
+				break;
 				
 			/*case "/comment-insert.do":
 				comment = new Comment();
