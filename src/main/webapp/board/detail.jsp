@@ -71,8 +71,9 @@
 	<p> 내용 : <input type="text" style="width:500px; height:50px;" name="content" id="content" >&emsp;<input type="button" value="작성하기" id="btnReg"></p>
 </div>
 <h2> 댓글 보기 </h2>
-	<p>전체 댓글 수 : ${pagination.count }</p>
+	
 <div id="commentList">
+<p>전체 댓글 수 : ${pagination.count }</p>
 	<c:forEach items="${list}" var="comment" varStatus="status">
 		<div class="myFlex">
 			<div>작성자 : ${comment.user.u_name}</div>&emsp;&emsp;
@@ -93,15 +94,13 @@
 		 <c:choose>
 			<c:when test="${ pagination.prevPage >= 3}">
 				<li>
-					<a href="board-detail.do?page=${pagination.prevPage}&a_idx=${board.a_idx}">◀</a>		
+					<a class="page">◀</a>		
 				</li>
 			</c:when>
 		</c:choose> 
 		<c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
-			
 				<c:choose>
 					<c:when test="${ pagination.page == i }">
-						
 						<li style="background-color:#ededed;">
 							<span>${i}</span>
 						</li>
@@ -116,7 +115,7 @@
 		 <c:choose>
 			<c:when test="${ pagination.nextPage <= pagination.lastPage }">
 				<li style="">
-					<a href="board-detail.do?page=${pagination.nextPage}&a_idx=${board.a_idx}">▶</a>
+					<a class="page">▶</a>
 				</li>
 			</c:when>	
 		</c:choose> 

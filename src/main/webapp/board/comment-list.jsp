@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="commentList">
-
+<p>전체 댓글 수 : ${pagination.count }</p>
 	<c:forEach items="${list}" var="comment" varStatus="status">
 		<div class="myFlex">
 			<div>작성자 : ${comment.user.u_name}</div>&emsp;&emsp;
