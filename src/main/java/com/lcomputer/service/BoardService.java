@@ -49,6 +49,10 @@ public class BoardService {
 		dao.deleteBoard(board);
 	}
 	
+	public void updateBoardCount(Board board) {
+		dao.updateBoardCount(board);
+	}
+	
 
 	
 	

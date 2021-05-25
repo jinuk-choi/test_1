@@ -34,12 +34,14 @@ public class Controller extends HttpServlet {
 		
 		String[] authList = {
 				"/user-list.do"
-				/*,"/user-insert.do"
+				,"/user-insert.do"
 				,"/user-insert-process.do"
 				,"/user-detail.do"
 				,"/user-edit.do"
 				,"/user-edit-process.do"
-				,"/logout.do"  */
+				,"/logout.do"  
+				,"/board-list.do"
+				,"/board-detail.do"
 				
 			};  
 		
@@ -89,6 +91,7 @@ public class Controller extends HttpServlet {
 		int type = 0;
 		String keyword = null;
 		String strType = null;
+		
 		
 		
 		
@@ -150,6 +153,7 @@ public class Controller extends HttpServlet {
 					session.setAttribute("u_idx", user.getU_idx());
 					session.setAttribute("u_id", user.getU_id());
 					session.setAttribute("u_name", user.getU_name());
+					session.setAttribute("u_auth", user.getU_auth());
 			
 					view = "user/login-result";
 				} else {
@@ -183,6 +187,7 @@ public class Controller extends HttpServlet {
 					keyword = request.getParameter("keyword");
 					search = new Search(type, keyword);
 				}
+				
 				boardService = BoardService.getInstance();				
 				count = boardService.getCount(search);
 				pagination = new Pagination(page, count, search);
@@ -194,7 +199,8 @@ public class Controller extends HttpServlet {
 												
 			
 				request.setAttribute("list", boardList);
-				request.setAttribute("pagination", pagination);							
+				request.setAttribute("pagination", pagination);		
+			
 				
 				
 				view = "board/list";
@@ -206,6 +212,7 @@ public class Controller extends HttpServlet {
 				board.setA_group(Integer.parseInt(request.getParameter("a_group")));
 				board.setA_order(Integer.parseInt(request.getParameter("a_order")));
 				board.setA_depth(Integer.parseInt(request.getParameter("a_depth")));
+				
 		
 				
 				request.setAttribute("board", board);
@@ -215,7 +222,7 @@ public class Controller extends HttpServlet {
 				
 			case "/board-insert-process.do":
 				board = new Board();
-				board.setA_writer(request.getParameter("id"));
+				board.setU_idx(Integer.parseInt(request.getParameter("u_idx")));
 				board.setA_title(request.getParameter("title"));
 				board.setA_content(request.getParameter("content"));
 				board.setA_group(Integer.parseInt(request.getParameter("a_group")));
@@ -224,28 +231,35 @@ public class Controller extends HttpServlet {
 				
 				boardService = BoardService.getInstance();
 				boardService.insertBoard(board);
+				count = boardService.getCount(search);
+				pagination = new Pagination(page, count, search);
+				
 					
 				boardList = boardService.getBoard(pagination);			
 				request.setAttribute("board", boardList);
+				request.setAttribute("pagination", pagination);	
 						
 				view = "board/insert-result";
 				break;
+			
+				
+			
 				
 			case "/board-detail.do":
 				reqPage = request.getParameter("page");
 				if (reqPage != null) { 
 					page = Integer.parseInt(reqPage);
-					
 				}
 				
+				board = new Board();
+				board.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
+				boardService = BoardService.getInstance();
+				boardService.updateBoardCount(board);
 				
 				aIdx = Integer.parseInt(request.getParameter("a_idx"));
 				boardService = BoardService.getInstance();
 				board = boardService.getBoardById(aIdx);
 				
-				
-				
-			
 				commentService = CommentService.getInstance();
 				count = commentService.getCommentCount(board);
 				pagination = new Pagination(page, count);
@@ -273,7 +287,6 @@ public class Controller extends HttpServlet {
 				
 				board = new Board();
 				board.setA_idx(Integer.parseInt(request.getParameter("a_idx")));
-				board.setA_writer(request.getParameter("id"));
 				board.setA_title(request.getParameter("title"));
 				board.setA_content(request.getParameter("content"));
 				
@@ -304,12 +317,9 @@ public class Controller extends HttpServlet {
 				}
 				
 				aIdx = Integer.parseInt(request.getParameter("a_idx"));
-				boardService = BoardService.getInstance();
-				board = boardService.getBoardById(aIdx);
-				
-				
-				
-			
+				board = new Board();
+				board.setA_idx(aIdx);
+		
 				commentService = CommentService.getInstance();
 				count = commentService.getCommentCount(board);
 				pagination = new Pagination(page, count);
@@ -319,25 +329,18 @@ public class Controller extends HttpServlet {
 				request.setAttribute("board", board);
 				request.setAttribute("list", commentList);
 				request.setAttribute("pagination", pagination);		
-				view = "comment/list-page";
+				view = "board/comment-list";
 				break;
-				
-			/*case "/comment-insert.do":
-				comment = new Comment();
-				comment.setU_idx(Integer.parseInt(request.getParameter("id")));
-				comment.setB_content(request.getParameter("content"));
-				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));						
-				commentService = CommentService.getInstance();
-				commentService.insertComment(comment);
-						
-				view = "board/insert-result";
-				break; */
+			
 				
 			case "/aj-comment-insert.do":
 				comment = new Comment();
 				comment.setU_idx(Integer.parseInt(request.getParameter("id")));
 				comment.setB_content(request.getParameter("content"));
-				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));						
+				comment.setA_idx(Integer.parseInt(request.getParameter("a_idx")));		
+				comment.setB_group(Integer.parseInt(request.getParameter("b_group")));
+				comment.setB_order(Integer.parseInt(request.getParameter("b_order")));
+				comment.setB_depth(Integer.parseInt(request.getParameter("b_depth"))+1);
 				commentService = CommentService.getInstance();
 				commentService.insertComment(comment);
 				
@@ -349,10 +352,10 @@ public class Controller extends HttpServlet {
 				pagination = new Pagination(page, count);
 				board.setPagination(pagination);
 				commentList = commentService.getComment(board);
-				
-				
+						
 				
 				request.setAttribute("list", commentList);
+				request.setAttribute("pagination", pagination);	
 				view = "board/comment-list";
 				break;
 				
@@ -376,6 +379,7 @@ public class Controller extends HttpServlet {
 				
 				commentList = commentService.getComment(board);
 				request.setAttribute("list", commentList);
+				request.setAttribute("pagination", pagination);	
 				
 				view = "board/comment-list";
 				break;
@@ -400,6 +404,7 @@ public class Controller extends HttpServlet {
 				board.setPagination(pagination);
 				commentList = commentService.getComment(board);
 				request.setAttribute("list", commentList);
+				request.setAttribute("pagination", pagination);	
 						
 				view = "board/comment-list";
 				break;

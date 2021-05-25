@@ -11,6 +11,7 @@ import com.lcomputer.database.DBConnection;
 import com.lcomputer.vo.Board;
 import com.lcomputer.vo.Pagination;
 import com.lcomputer.vo.Search;
+import com.lcomputer.vo.User;
 
 
 public class BoardDAO {
@@ -83,13 +84,14 @@ private static BoardDAO dao = null;
 			conn = DBConnection.getConnection();
 			//String query = "select * from board limit 3";
 			String query = new StringBuilder()
-					.append("SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM,\n")
-					.append("				ta.*\n")
-					.append("FROM 			board ta,\n")
-					.append("				(SELECT @rownum := (SELECT	COUNT(*)-?+1 FROM board ta)) tb\n")
+					.append("SELECT 		@ROWNUM := @ROWNUM - 1 AS ROWNUM, ")
+					.append("				ta.*, tb.u_id, tb.u_name, tb.u_auth \n")
+					.append("FROM 			board ta \n")
+					.append("LEFT JOIN 		user tb ON ta.u_idx = tb.u_idx, \n")
+					.append("				(SELECT @rownum := (SELECT	COUNT(*)-?+1 FROM board ta))tc \n")
 					.append(where)
 					.append("ORDER BY		a_group DESC, a_order DESC ")
-					.append("LIMIT			?, 3\n")
+					.append("LIMIT			?, 3 \n")
 					.toString();
 	       	pstmt = conn.prepareStatement(query); 
 	       	
@@ -110,7 +112,6 @@ private static BoardDAO dao = null;
 	        	Board board = new Board();
 	        	board.setRownum(rs.getInt("ROWNUM"));
       	       	board.setA_idx(rs.getInt("a_idx"));
-       	        board.setA_writer(rs.getString("a_writer"));
        	       	board.setA_title(rs.getString("a_title"));
        	       	board.setA_content(rs.getString("a_content"));
        	       	board.setA_count(rs.getInt("a_count"));
@@ -118,6 +119,13 @@ private static BoardDAO dao = null;
        	       	board.setA_group(rs.getInt("a_group"));
        	       	board.setA_order(rs.getInt("a_order"));
        	       	board.setA_depth(rs.getInt("a_depth"));
+       	       	board.setU_idx(rs.getInt("u_idx"));
+       	       	
+       	       	User user = new User();
+    	       	user.setU_name(rs.getString("u_name"));
+    	       	user.setU_idx(rs.getInt("u_idx"));
+    	       	user.setU_auth(rs.getInt("u_auth"));
+    	        board.setUser(user);
        	       	
        	       	list.add(board);
 	        }
@@ -149,16 +157,16 @@ private static BoardDAO dao = null;
 			
 		try {
 			conn = DBConnection.getConnection();
-			String sql = "insert into board(a_idx,a_writer,a_title,a_count,a_content,a_group,a_order,a_depth) values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into board(a_idx,a_title,a_count,a_content,a_group,a_order,a_depth,u_idx) values(?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board.getA_idx());
-			pstmt.setString(2, board.getA_writer());
-			pstmt.setString(3, board.getA_title());
-			pstmt.setInt(4, board.getA_count());
-			pstmt.setString(5, board.getA_content());
-			pstmt.setInt(6, board.getA_group());
-			pstmt.setInt(7, board.getA_order());
-			pstmt.setInt(8, board.getA_depth());
+			pstmt.setString(2, board.getA_title());
+			pstmt.setInt(3, board.getA_count());
+			pstmt.setString(4, board.getA_content());
+			pstmt.setInt(5, board.getA_group());
+			pstmt.setInt(6, board.getA_order());
+			pstmt.setInt(7, board.getA_depth());
+			pstmt.setInt(8, board.getU_idx());
 			pstmt.executeUpdate();
 			pstmt.close();
 			if (board.getA_group() == 0) {	// 원글
@@ -277,7 +285,7 @@ private static BoardDAO dao = null;
 		
 		try {
 			conn = DBConnection.getConnection();
-		    String query = "select * from board where a_idx=?";
+		    String query = "select ta.*, tb.u_id, tb.u_name from board ta left join user tb on ta.u_idx=tb.u_idx where a_idx=? ";
 		   	pstmt = conn.prepareStatement(query);
 		   	pstmt.setInt(1, aIdx);
 		   	
@@ -287,7 +295,6 @@ private static BoardDAO dao = null;
 	   	      
 	           board = new Board();
 	           board.setA_idx(rs.getInt("a_idx"));
-	           board.setA_writer(rs.getString("a_writer"));
 	           board.setA_title(rs.getString("a_title"));
 	           board.setA_content(rs.getString("a_content"));
 	           board.setA_count(rs.getInt("a_count"));
@@ -295,6 +302,11 @@ private static BoardDAO dao = null;
 	           board.setA_group(rs.getInt("a_group"));
 	           board.setA_order(rs.getInt("a_order"));
 	           board.setA_depth(rs.getInt("a_depth"));
+	           board.setU_idx(rs.getInt("u_idx"));
+	           User user = new User();
+	           user.setU_name(rs.getString("u_name"));
+	           board.setUser(user);
+	        
 		    }
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -317,14 +329,13 @@ private static BoardDAO dao = null;
 			
 		try {
 			conn = DBConnection.getConnection();
-			String sql = "UPDATE board SET a_writer = ?,a_title = ?,a_count = ?,a_content = ? WHERE  a_idx = ? ";
+			String sql = "UPDATE board SET a_title = ?,a_count = ?,a_content = ? WHERE  a_idx = ? ";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, board.getA_writer());
-			pstmt.setString(2, board.getA_title());
-			pstmt.setInt(3, board.getA_count());
-			pstmt.setString(4, board.getA_content());
-			pstmt.setInt(5, board.getA_idx());
+			pstmt.setString(1, board.getA_title());
+			pstmt.setInt(2, board.getA_count());
+			pstmt.setString(3, board.getA_content());
+			pstmt.setInt(4, board.getA_idx());
 			pstmt.executeUpdate();
 		} catch( Exception ex) {
 			System.out.println("SQLException : "+ex.getMessage());
@@ -362,11 +373,28 @@ private static BoardDAO dao = null;
 		}
 	}
 	
-	
-	
-	
-	
-	
+	public void updateBoardCount(Board board) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		 try {
+			 	conn = DBConnection.getConnection();
+		        String sql = "update board set a_count = a_count+1 where a_idx= ? " ;
+
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setInt(1, board.getA_idx());
+		        pstmt.executeUpdate();
+		         
+		 } catch( Exception ex) {
+				System.out.println("SQLException : "+ex.getMessage());
+			} finally {
+				try {
+					if (pstmt != null) pstmt.close();
+					if (conn != null) conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				  }
+			 } 
+	} 
 }
 
 

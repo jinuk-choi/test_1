@@ -106,7 +106,7 @@
 					</c:if>
 				<a href="board-detail.do?a_idx=${board.a_idx}">${board.a_title}</a>
 			</td>
-			<td>${board.a_writer}</td>
+			<td>${board.user.u_name}</td>
 			<td>${board.a_date}</td>
 			<td>${board.a_count}</td>
 		<tr>

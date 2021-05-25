@@ -53,7 +53,8 @@ public class UserDAO {
        	       	user.setU_name(rs.getString("u_name"));
        	       	user.setU_tel(rs.getString("u_tel"));
        	       	user.setU_age(rs.getString("u_age"));
-       	       	
+       	       	user.setU_auth(rs.getInt("u_auth"));
+	       	       	
        	       	list.add(user);
 	        }
 		} catch (Exception e) {
@@ -145,6 +146,7 @@ public class UserDAO {
 	        	user.setU_pw(rs.getString("u_pw"));
 	        	user.setU_id(rs.getString("u_id"));
 	        	user.setU_name(rs.getString("u_name"));
+	        	user.setU_auth(rs.getInt("u_auth"));
 		   }
 		} catch( Exception ex) {
 			System.out.println("SQLException : "+ex.getMessage());

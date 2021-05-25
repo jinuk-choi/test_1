@@ -3,7 +3,7 @@ package com.lcomputer.vo;
 public class Board {
 	
 	private int a_idx;
-	private String a_writer;
+	private int u_idx;
 	private String a_title;
 	private int a_count;
 	private String a_content;
@@ -13,6 +13,7 @@ public class Board {
 	private int a_order;
 	private int a_depth;
 	private Pagination pagination;
+	private User user;
 	
 	
 	
@@ -46,11 +47,11 @@ public class Board {
 	public void setA_idx(int a_idx) {
 		this.a_idx = a_idx;
 	}
-	public String getA_writer() {
-		return a_writer;
+	public int getU_idx() {
+		return u_idx;
 	}
-	public void setA_writer(String a_writer) {
-		this.a_writer = a_writer;
+	public void setU_idx(int u_idx) {
+		this.u_idx = u_idx;
 	}
 	public String getA_title() {
 		return a_title;
@@ -82,6 +83,11 @@ public class Board {
 	public void setPagination(Pagination pagination) {
 		this.pagination = pagination;
 	}
-	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 }

@@ -41,6 +41,7 @@ private static CommentDAO dao = null;
 			conn = DBConnection.getConnection();
 			String query = new StringBuilder()
 					.append("SELECT ta.*, tb.u_name, tb.u_id FROM comment ta LEFT JOIN user tb ON ta.u_idx = tb.u_idx WHERE a_idx=? ")
+					.append("ORDER BY		b_group DESC, b_order DESC ")
 					.append("LIMIT ?,3")
 					.toString();
 	       	pstmt = conn.prepareStatement(query); 
@@ -55,13 +56,18 @@ private static CommentDAO dao = null;
       	       	comment.setB_idx(rs.getInt("b_idx"));
        	        comment.setU_idx(rs.getInt("u_idx"));
        	       	comment.setB_content(rs.getString("b_content"));
-       	       	//comment.setB_redate(rs.getString("b_redate"));
-       	       	
+       	       	comment.setB_group(rs.getInt("b_group"));
+	       	    comment.setB_order(rs.getInt("b_order"));
+	       	    comment.setB_depth(rs.getInt("b_depth"));
+       	             	   
        	      	User user = new User();
        	       	user.setU_name(rs.getString("u_name"));
        	       	user.setU_idx(rs.getInt("u_idx"));
        	        comment.setUser(user);
-       	       //	comment.getUser().getU_name();
+       	        
+      
+       	        
+       	      
        	       	
        	       	list.add(comment);
 	        }
@@ -85,13 +91,32 @@ private static CommentDAO dao = null;
 			
 		try {
 			conn = DBConnection.getConnection();
-			String sql = "insert into comment(b_idx,u_idx,b_content,a_idx) values(?,?,?,?)";
+			String sql = "insert into comment(b_idx,u_idx,b_content,a_idx,b_group,b_order,b_depth) values(?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, comment.getB_idx());
 			pstmt.setInt(2, comment.getU_idx());
 			pstmt.setString(3, comment.getB_content());
 			pstmt.setInt(4, comment.getA_idx());
+			pstmt.setInt(5, comment.getB_group());
+			pstmt.setInt(6, comment.getB_order());
+			pstmt.setInt(7, comment.getB_depth());
 			pstmt.executeUpdate();
+			pstmt.close();
+			
+			if (comment.getB_group() == 0) {	// 원글
+				// 원글의 b_group 을 auto_increment 된 b_idx 로 수정
+				sql = "update comment set b_group = last_insert_id() where b_idx = last_insert_id()";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.executeUpdate();
+			} else  {						// 답글
+				
+				sql = "update comment set b_order = b_order + 1 where b_group = ? and b_order >= ? and b_idx <> last_insert_id()";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, comment.getB_group());
+				pstmt.setInt(2, comment.getB_order());
+				pstmt.executeUpdate();
+			} 
+		
 		} catch( Exception ex) {
 			System.out.println("SQLException : "+ex.getMessage());
 		} finally {
@@ -137,7 +162,7 @@ private static CommentDAO dao = null;
 			
 			try {
 				conn = DBConnection.getConnection();
-			    String query = "select * from comment where b_idx=?";
+			    String query = "SELECT ta.*, tb.u_name, tb.u_id FROM comment ta LEFT JOIN user tb ON ta.u_idx = tb.u_idx where b_idx=?";
 			   	pstmt = conn.prepareStatement(query);
 			   	pstmt.setInt(1, bIdx);
 			   	
@@ -150,7 +175,13 @@ private static CommentDAO dao = null;
 		           comment.setU_idx(rs.getInt("u_idx"));
 		           comment.setB_title(rs.getString("b_title"));
 		           comment.setB_content(rs.getString("b_content"));
-		           //comment.setB_redate(rs.getString("b_redate"));
+		           comment.setB_group(rs.getInt("b_group"));
+		       	   comment.setB_order(rs.getInt("b_order"));
+		       	   comment.setB_depth(rs.getInt("b_depth"));
+		        		         
+		           User user = new User();
+		           user.setU_name(rs.getString("u_name"));
+		           comment.setUser(user);
 		           
 			    }
 			} catch (SQLException e) {
